@@ -350,6 +350,60 @@
     .routine-val:focus { background: var(--border); }
     .routine-val:empty::before { content: attr(data-placeholder); color: var(--muted); }
 
+    /* ─── FITNESS TABLE ──────────────────────────────────── */
+    .fit-table { width: 100%; border-collapse: collapse; }
+    .fit-table thead th {
+      font-size: .68rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      padding: 0 10px 10px;
+      text-align: left;
+      border-bottom: 1.5px solid var(--border);
+    }
+    .fit-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background .15s;
+    }
+    .fit-table tbody tr:last-child { border-bottom: none; }
+    .fit-table tbody tr:hover { background: var(--tag-bg); }
+    .fit-table td {
+      padding: 11px 10px;
+      font-size: .81rem;
+      vertical-align: top;
+      line-height: 1.45;
+    }
+    .fit-day-cell {
+      font-weight: 600;
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .07em;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .fit-day-cell.today-row { color: var(--ink); }
+    .fit-type { font-weight: 500; }
+    .fit-type.strength { color: #16a34a; }
+    .fit-type.run      { color: #2563eb; }
+    .fit-type.rest     { color: #dc2626; }
+    .fit-detail { color: var(--muted); font-size: .77rem; margin-top: 2px; }
+    .fit-goal-tag {
+      display: inline-block;
+      font-size: .68rem;
+      font-weight: 500;
+      padding: 3px 9px;
+      border-radius: 99px;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    @media (max-width: 600px) {
+      .fit-table thead th:nth-child(3),
+      .fit-table td:nth-child(3) { display: none; }
+    }
+
     /* ─── FOOTER ────────────────────────────────────────── */
     footer {
       text-align: center;
@@ -444,8 +498,18 @@
 
     <!-- ENTRENO -->
     <section class="card" id="fitness">
-      <div class="card-title"><span class="icon">🏋️</span> Entrenamiento</div>
-      <div class="routine-list" id="fitness-list"></div>
+      <div class="card-title"><span class="icon">🏋️</span> Plan de Entrenamiento</div>
+      <table class="fit-table">
+        <thead>
+          <tr>
+            <th>Día</th>
+            <th>Entrenamiento</th>
+            <th>Detalle</th>
+            <th>Objetivo</th>
+          </tr>
+        </thead>
+        <tbody id="fit-tbody"></tbody>
+      </table>
     </section>
 
     <!-- COMIDAS -->
@@ -617,18 +681,41 @@
   renderGrid('ig'); renderGrid('tt');
 
   /* ── FITNESS ──────────────────────────────────────────── */
-  const fitDays = ['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
-  const fitDefaults = ['Fuerza - piernas','Cardio 30 min','Fuerza - tren superior','Yoga / Movilidad','Fuerza - full body','Activo (caminata)','Descanso'];
-  const fitList = document.getElementById('fitness-list');
-  const fitData = load('fitness', fitDefaults);
-  fitDays.forEach((d,i) => {
-    const row = document.createElement('div'); row.className = 'routine-row';
-    row.innerHTML = `<span class="routine-day-tag">${d}</span><span class="routine-val" contenteditable="true" data-placeholder="Sin entreno">${fitData[i]||''}</span>`;
-    row.querySelector('.routine-val').addEventListener('input', () => {
-      const vals = [...fitList.querySelectorAll('.routine-val')].map(el=>el.textContent);
-      save('fitness', vals);
-    });
-    fitList.appendChild(row);
+  const FIT_PLAN = [
+    { day:'Lunes',    type:'strength', label:'Glúteos + Piernas',
+      detail:'Hip thrust · sentadilla goblet · peso muerto · abducciones · patadas de glúteo',
+      goal:'Construcción muscular' },
+    { day:'Martes',   type:'strength', label:'Tren superior + Core',
+      detail:'Press hombro · remo · bíceps · tríceps · plancha · elevaciones · hollow hold',
+      goal:'Definición' },
+    { day:'Miércoles',type:'run',      label:'Running suave + activación',
+      detail:'20–30 min trote ligero + glúteos (puentes · sentadillas · abducciones)',
+      goal:'Recuperación activa' },
+    { day:'Jueves',   type:'run',      label:'Running social',
+      detail:'30–40 min trote suave con amigas',
+      goal:'Cardio ligero' },
+    { day:'Viernes',  type:'strength', label:'Glúteos + Piernas',
+      detail:'Hip thrust · búlgara · peso muerto · step ups · abducciones',
+      goal:'Estimulación fuerte' },
+    { day:'Sábado',   type:'rest',     label:'Descanso',
+      detail:'Recuperación total',
+      goal:'Reducir estrés' },
+    { day:'Domingo',  type:'run',      label:'Running largo',
+      detail:'10K → 12K → 14K → 16K (progresivo)',
+      goal:'Media maratón' },
+  ];
+  const todayFull = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'][now.getDay()];
+  const tbody = document.getElementById('fit-tbody');
+  FIT_PLAN.forEach(r => {
+    const isToday = r.day === todayFull;
+    const tr = document.createElement('tr');
+    if (isToday) tr.style.background = 'var(--tag-bg)';
+    tr.innerHTML = `
+      <td class="fit-day-cell${isToday?' today-row':''}">${r.day.substring(0,3).toUpperCase()}</td>
+      <td><div class="fit-type ${r.type}">${r.label}</div></td>
+      <td><div class="fit-detail">${r.detail}</div></td>
+      <td><span class="fit-goal-tag">${r.goal}</span></td>`;
+    tbody.appendChild(tr);
   });
 
   /* ── MEALS ────────────────────────────────────────────── */
