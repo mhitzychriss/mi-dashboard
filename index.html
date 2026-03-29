@@ -248,74 +248,130 @@
 
     /* ─── CONTENT GRID ──────────────────────────────────── */
     #contenido { animation-delay: .15s; }
-    .platform-tabs {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 16px;
+
+    /* Stats bar */
+    .cg-stats {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 20px;
     }
-    .plat-tab {
-      font-size: .75rem;
-      font-weight: 500;
-      padding: 5px 14px;
-      border-radius: 99px;
-      border: 1.5px solid var(--border);
-      background: transparent;
-      cursor: pointer;
-      color: var(--muted);
-      transition: all .2s;
+    .cg-stat {
+      background: var(--tag-bg); border: 1.5px solid var(--border);
+      border-radius: 10px; padding: 10px 16px; min-width: 90px;
     }
-    .plat-tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
-    .content-grid-wrap {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 10px;
+    .cg-stat-label {
+      font-size: .65rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted); margin-bottom: 2px;
     }
-    .content-cell {
-      aspect-ratio: 1;
-      background: var(--tag-bg);
-      border-radius: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 8px;
-      gap: 4px;
-      position: relative;
-      border: 1.5px solid transparent;
-      transition: border-color .2s;
-      cursor: pointer;
+    .cg-stat-val {
+      font-family: 'DM Serif Display', serif; font-size: 1.4rem; line-height: 1;
     }
-    .content-cell:hover { border-color: var(--border); }
-    .content-cell .cell-day {
-      font-size: .6rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: .08em;
-      color: var(--muted);
+    .cg-stat-val span { font-family: 'DM Sans', sans-serif; font-size: .75rem; color: var(--muted); font-weight: 400; }
+
+    /* Legend */
+    .cg-legend {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px; align-items: center;
     }
-    .content-cell .cell-text {
-      font-size: .72rem;
-      text-align: center;
-      color: var(--ink);
-      outline: none;
-      border: none;
-      background: transparent;
-      font-family: 'DM Sans', sans-serif;
-      width: 100%;
-      text-align: center;
+    .cg-leg {
+      display: flex; align-items: center; gap: 5px;
+      font-size: .68rem; color: var(--muted); font-weight: 500;
     }
-    .content-cell .cell-text:empty::before { content: "＋"; color: var(--border); font-size: 1rem; }
-    .status-dot {
-      width: 7px; height: 7px;
-      border-radius: 50%;
-      background: var(--border);
-      position: absolute;
-      top: 8px; right: 8px;
+    .cg-legdot {
+      width: 8px; height: 8px; border-radius: 3px; flex-shrink: 0;
     }
-    .status-dot.done  { background: #4ade80; }
-    .status-dot.prog  { background: #facc15; }
-    .status-dot.plan  { background: #a5b4fc; }
-    @media (max-width: 500px) { .content-grid-wrap { grid-template-columns: repeat(3, 1fr); } }
+
+    /* Week tabs */
+    .cg-tabs {
+      display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap;
+    }
+    .cg-tab {
+      font-size: .75rem; font-weight: 500; padding: 6px 14px;
+      border-radius: 8px; border: 1.5px solid var(--border);
+      background: transparent; cursor: pointer; color: var(--muted);
+      transition: all .2s; font-family: 'DM Sans', sans-serif;
+    }
+    .cg-tab:hover { color: var(--ink); border-color: var(--ink); }
+    .cg-tab.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+    /* Week panel */
+    .cg-week { display: none; }
+    .cg-week.active { display: block; }
+    .cg-week-label {
+      font-size: .68rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .09em; color: var(--muted); margin-bottom: 14px;
+      padding-bottom: 10px; border-bottom: 1.5px solid var(--border);
+    }
+
+    /* Day row */
+    .cg-day-row {
+      display: grid; grid-template-columns: 54px 1fr;
+      gap: 10px; margin-bottom: 8px; align-items: start;
+    }
+    .cg-day-label {
+      padding-top: 12px; font-size: .67rem; font-weight: 700;
+      color: var(--muted); letter-spacing: .08em; text-transform: uppercase;
+    }
+    .cg-cards { display: flex; gap: 8px; flex-wrap: wrap; }
+
+    /* Content cards */
+    .cg-card {
+      flex: 1; min-width: 240px; border-radius: 10px;
+      padding: 12px 14px; border: 1.5px solid;
+      transition: transform .15s;
+    }
+    .cg-card:hover { transform: translateY(-2px); }
+
+    .cg-star {
+      display: inline-block; font-size: .65rem; font-weight: 700;
+      letter-spacing: .06em; text-transform: uppercase;
+      padding: 2px 8px; border-radius: 4px; margin-bottom: 6px;
+      background: var(--ink); color: #fff;
+    }
+    .cg-card-title { font-weight: 600; font-size: .82rem; margin-bottom: 4px; line-height: 1.4; }
+    .cg-card-body  { font-size: .76rem; line-height: 1.5; margin-bottom: 5px; opacity: .85; }
+    .cg-card-hook  {
+      font-style: italic; font-size: .73rem; margin-bottom: 8px;
+      opacity: .7; font-family: 'DM Serif Display', serif; line-height: 1.4;
+    }
+    .cg-pills { display: flex; gap: 4px; flex-wrap: wrap; }
+    .cg-pill {
+      font-size: .65rem; font-weight: 600; letter-spacing: .02em;
+      padding: 2px 7px; border-radius: 4px; white-space: nowrap;
+    }
+
+    /* Color themes — adapted to light dashboard palette */
+    .cg-teal   { background: #edfaf4; border-color: #a7e8cf; }
+    .cg-teal   .cg-card-title { color: #1a8a5c; }
+    .cg-teal   .cg-pill { background: #d0f5e5; color: #1a8a5c; }
+
+    .cg-amber  { background: #fef9ec; border-color: #f0d89a; }
+    .cg-amber  .cg-card-title { color: #a8720a; }
+    .cg-amber  .cg-pill { background: #fdefc4; color: #a8720a; }
+
+    .cg-coral  { background: #fff1ee; border-color: #f5bfb3; }
+    .cg-coral  .cg-card-title { color: #b84028; }
+    .cg-coral  .cg-pill { background: #fdd9d2; color: #b84028; }
+
+    .cg-blue   { background: #eef4fd; border-color: #aec9f0; }
+    .cg-blue   .cg-card-title { color: #1e5ba8; }
+    .cg-blue   .cg-pill { background: #d4e5fa; color: #1e5ba8; }
+
+    .cg-purple { background: #f3f0fd; border-color: #c9bdf0; }
+    .cg-purple .cg-card-title { color: #5a3db0; }
+    .cg-purple .cg-pill { background: #e1d9fa; color: #5a3db0; }
+
+    .cg-pink   { background: #fef0f5; border-color: #f5b8d4; }
+    .cg-pink   .cg-card-title { color: #a82660; }
+    .cg-pink   .cg-pill { background: #fcd5e8; color: #a82660; }
+
+    .cg-gray   { background: var(--tag-bg); border-color: var(--border); }
+    .cg-gray   .cg-card-title { color: var(--muted); }
+    .cg-gray   .cg-pill { background: var(--border); color: var(--muted); }
+
+    .cg-divider { border: none; border-top: 1px solid var(--border); margin: 6px 0 12px; }
+
+    @media (max-width: 650px) {
+      .cg-day-row { grid-template-columns: 38px 1fr; }
+      .cg-card { min-width: 100%; }
+    }
 
     /* ─── FITNESS + MEALS ───────────────────────────────── */
     #fitness, #comidas { animation-delay: .2s; }
@@ -350,59 +406,186 @@
     .routine-val:focus { background: var(--border); }
     .routine-val:empty::before { content: attr(data-placeholder); color: var(--muted); }
 
-    /* ─── FITNESS TABLE ──────────────────────────────────── */
-    .fit-table { width: 100%; border-collapse: collapse; }
-    .fit-table thead th {
-      font-size: .68rem;
-      font-weight: 600;
+    /* ─── MEALS ACCORDION ───────────────────────────────── */
+    .meal-days { display: flex; flex-direction: column; gap: 8px; }
+    .meal-day-card {
+      border: 1.5px solid var(--border); border-radius: 10px; overflow: hidden;
+    }
+    .meal-day-card.today-meal { border-color: var(--ink); }
+    .meal-day-header {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 11px 14px; cursor: pointer; background: var(--surface);
+      user-select: none; gap: 10px; transition: background .15s;
+    }
+    .meal-day-header:hover { background: var(--tag-bg); }
+    .meal-day-left { display: flex; align-items: center; gap: 10px; flex: 1; }
+    .meal-day-short {
+      font-size: .67rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted); width: 30px; flex-shrink: 0;
+    }
+    .meal-day-short.today-tag { color: var(--ink); }
+    .meal-day-name { font-size: .85rem; font-weight: 500; }
+    .meal-day-cals {
+      font-size: .72rem; font-weight: 600; color: var(--muted);
+      background: var(--tag-bg); border: 1px solid var(--border);
+      padding: 3px 9px; border-radius: 99px; white-space: nowrap;
+    }
+    .meal-chevron { font-size: .75rem; color: var(--muted); transition: transform .25s; flex-shrink: 0; }
+    .meal-day-card.open .meal-chevron { transform: rotate(180deg); }
+    .meal-day-body {
+      display: none; border-top: 1px solid var(--border);
+      background: var(--tag-bg); padding: 10px 14px 14px;
+    }
+    .meal-day-card.open .meal-day-body { display: block; }
+
+    /* Individual meal rows */
+    .meal-item {
+      padding: 10px 0; border-bottom: 1px solid var(--border);
+    }
+    .meal-item:last-child { border-bottom: none; }
+    .meal-item-top {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 8px; margin-bottom: 5px;
+    }
+    .meal-label {
+      font-size: .7rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .07em; color: var(--muted); flex-shrink: 0;
+    }
+    .meal-food { font-size: .83rem; font-weight: 500; flex: 1; }
+    .meal-macros {
+      display: flex; gap: 6px; flex-wrap: wrap;
+    }
+    .macro-pill {
+      font-size: .66rem; font-weight: 600; padding: 2px 7px;
+      border-radius: 6px; white-space: nowrap; border: 1px solid;
+    }
+    .macro-cal  { background: #fff8ec; border-color: #f0d89a; color: #a8720a; }
+    .macro-prot { background: #edfaf4; border-color: #a7e8cf; color: #1a8a5c; }
+    .macro-carb { background: #eef4fd; border-color: #aec9f0; color: #1e5ba8; }
+    .macro-fat  { background: #fff1ee; border-color: #f5bfb3; color: #b84028; }
+
+    /* Daily total row */
+    .meal-day-total {
+      display: flex; gap: 6px; flex-wrap: wrap;
+      margin-top: 10px; padding-top: 10px;
+      border-top: 1.5px solid var(--border);
+    }
+    .meal-total-label {
+      font-size: .68rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .07em; color: var(--muted); align-self: center; margin-right: 4px;
+    }
+    .fit-days { display: flex; flex-direction: column; gap: 8px; }
+    .fit-day-card {
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .fit-day-card.today-card { border-color: var(--ink); }
+    .fit-day-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 11px 14px;
+      cursor: pointer;
+      background: var(--surface);
+      user-select: none;
+      gap: 10px;
+    }
+    .fit-day-header:hover { background: var(--tag-bg); }
+    .fit-day-left { display: flex; align-items: center; gap: 10px; }
+    .fit-day-tag {
+      font-size: .67rem;
+      font-weight: 700;
       text-transform: uppercase;
       letter-spacing: .08em;
       color: var(--muted);
-      padding: 0 10px 10px;
-      text-align: left;
-      border-bottom: 1.5px solid var(--border);
+      width: 30px;
     }
-    .fit-table tbody tr {
-      border-bottom: 1px solid var(--border);
-      transition: background .15s;
-    }
-    .fit-table tbody tr:last-child { border-bottom: none; }
-    .fit-table tbody tr:hover { background: var(--tag-bg); }
-    .fit-table td {
-      padding: 11px 10px;
-      font-size: .81rem;
-      vertical-align: top;
-      line-height: 1.45;
-    }
-    .fit-day-cell {
-      font-weight: 600;
-      font-size: .72rem;
-      text-transform: uppercase;
-      letter-spacing: .07em;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-    .fit-day-cell.today-row { color: var(--ink); }
-    .fit-type { font-weight: 500; }
-    .fit-type.strength { color: #16a34a; }
-    .fit-type.run      { color: #2563eb; }
-    .fit-type.rest     { color: #dc2626; }
-    .fit-detail { color: var(--muted); font-size: .77rem; margin-top: 2px; }
-    .fit-goal-tag {
-      display: inline-block;
-      font-size: .68rem;
+    .fit-day-tag.today-tag { color: var(--ink); }
+    .fit-day-name { font-size: .85rem; font-weight: 500; }
+    .fit-day-name.strength { color: #16a34a; }
+    .fit-day-name.run      { color: #2563eb; }
+    .fit-day-name.rest     { color: #dc2626; }
+    .fit-day-right { display: flex; align-items: center; gap: 8px; }
+    .fit-goal-pill {
+      font-size: .67rem;
       font-weight: 500;
       padding: 3px 9px;
       border-radius: 99px;
       background: var(--tag-bg);
       border: 1px solid var(--border);
       color: var(--muted);
+    }
+    .fit-chevron {
+      font-size: .75rem;
+      color: var(--muted);
+      transition: transform .25s;
+    }
+    .fit-day-card.open .fit-chevron { transform: rotate(180deg); }
+    .fit-day-body {
+      display: none;
+      padding: 0 14px 14px;
+      border-top: 1px solid var(--border);
+      background: var(--tag-bg);
+    }
+    .fit-day-card.open .fit-day-body { display: block; }
+    .fit-weight-note {
+      font-size: .74rem;
+      color: var(--muted);
+      margin: 10px 0 8px;
+      font-style: italic;
+    }
+    .fit-exercises { display: flex; flex-direction: column; gap: 5px; margin-bottom: 8px; }
+    .fit-ex-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: .8rem;
+      gap: 8px;
+    }
+    .fit-ex-name { flex: 1; }
+    .fit-ex-sets {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--muted);
       white-space: nowrap;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 2px 7px;
     }
-    @media (max-width: 600px) {
-      .fit-table thead th:nth-child(3),
-      .fit-table td:nth-child(3) { display: none; }
+    .fit-section-label {
+      font-size: .67rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin: 10px 0 6px;
     }
+    .fit-rest-note {
+      font-size: .74rem;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    /* Notes card */
+    .fit-notes-card {
+      border: 1.5px dashed var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-top: 4px;
+    }
+    .fit-notes-title {
+      font-size: .72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .fit-notes-list { display: flex; flex-direction: column; gap: 5px; }
+    .fit-note-item { font-size: .8rem; display: flex; gap: 6px; }
+    .fit-note-item::before { content: "·"; color: var(--muted); }
 
     /* ─── FOOTER ────────────────────────────────────────── */
     footer {
@@ -460,38 +643,122 @@
     <div class="days-row" id="days-container"></div>
   </section>
 
-  <!-- METAS + CONTENIDO -->
-  <div class="grid-2">
+  <!-- METAS (full width now) -->
+  <section class="card" id="metas">
+    <div class="card-title"><span class="icon">🎯</span> Metas</div>
+    <div class="goals-tabs">
+      <button class="goal-tab active" onclick="switchGoalTab(this,'personal')">Personales</button>
+      <button class="goal-tab" onclick="switchGoalTab(this,'profesional')">Profesionales</button>
+    </div>
+    <div class="goals-list" id="goals-personal"></div>
+    <div class="goals-list" id="goals-profesional" style="display:none"></div>
+    <button class="goal-add" onclick="addGoal()" style="margin-top:10px">+ Agregar meta</button>
+  </section>
 
-    <!-- METAS -->
-    <section class="card" id="metas">
-      <div class="card-title"><span class="icon">🎯</span> Metas</div>
-      <div class="goals-tabs">
-        <button class="goal-tab active" onclick="switchGoalTab(this,'personal')">Personales</button>
-        <button class="goal-tab" onclick="switchGoalTab(this,'profesional')">Profesionales</button>
-      </div>
-      <div class="goals-list" id="goals-personal"></div>
-      <div class="goals-list" id="goals-profesional" style="display:none"></div>
-      <button class="goal-add" onclick="addGoal()" style="margin-top:10px">+ Agregar meta</button>
-    </section>
+  <!-- GRILLA CONTENIDO — full width -->
+  <section class="card" id="contenido">
+    <div class="card-title"><span class="icon">📱</span> Grilla de Contenido Mensual</div>
 
-    <!-- GRILLA CONTENIDO -->
-    <section class="card" id="contenido">
-      <div class="card-title"><span class="icon">📱</span> Grilla de Contenido</div>
-      <div class="platform-tabs">
-        <button class="plat-tab active" onclick="switchPlatform(this,'ig')">Instagram</button>
-        <button class="plat-tab" onclick="switchPlatform(this,'tt')">TikTok</button>
-      </div>
-      <div class="content-grid-wrap" id="content-grid-ig"></div>
-      <div class="content-grid-wrap" id="content-grid-tt" style="display:none"></div>
-      <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;font-size:.72rem;color:var(--muted)">
-        <span>● Publicado</span>
-        <span style="color:#4ade80">● Publicado</span>
-        <span style="color:#facc15">● En proceso</span>
-        <span style="color:#a5b4fc">● Planeado</span>
-      </div>
-    </section>
-  </div>
+    <!-- Stats -->
+    <div class="cg-stats">
+      <div class="cg-stat"><div class="cg-stat-label">Piezas / mes</div><div class="cg-stat-val">28 <span>posts</span></div></div>
+      <div class="cg-stat"><div class="cg-stat-label">Reels / TikToks</div><div class="cg-stat-val">20 <span>videos</span></div></div>
+      <div class="cg-stat"><div class="cg-stat-label">Historias</div><div class="cg-stat-val">8 <span>días</span></div></div>
+      <div class="cg-stat"><div class="cg-stat-label">Frecuencia</div><div class="cg-stat-val">7 <span>días/sem</span></div></div>
+      <div class="cg-stat"><div class="cg-stat-label">Plataformas</div><div class="cg-stat-val">2 <span>redes</span></div></div>
+    </div>
+
+    <!-- Legend -->
+    <div class="cg-legend">
+      <div class="cg-leg"><div class="cg-legdot" style="background:#1a8a5c"></div>Inspiración</div>
+      <div class="cg-leg"><div class="cg-legdot" style="background:#a8720a"></div>Humor / Acting</div>
+      <div class="cg-leg"><div class="cg-legdot" style="background:#b84028"></div>Reinvención</div>
+      <div class="cg-leg"><div class="cg-legdot" style="background:#1e5ba8"></div>UGC / Lifestyle</div>
+      <div class="cg-leg"><div class="cg-legdot" style="background:#5a3db0"></div>Serie Playlist</div>
+      <div class="cg-leg"><div class="cg-legdot" style="background:#a82660"></div>Mujer activa</div>
+      <div class="cg-leg"><div class="cg-legdot" style="background:#888580"></div>Historias / Comunidad</div>
+    </div>
+
+    <!-- Week Tabs -->
+    <div class="cg-tabs">
+      <button class="cg-tab active" onclick="cgShow(0)">Semana 1</button>
+      <button class="cg-tab" onclick="cgShow(1)">Semana 2</button>
+      <button class="cg-tab" onclick="cgShow(2)">Semana 3</button>
+      <button class="cg-tab" onclick="cgShow(3)">Semana 4</button>
+    </div>
+
+    <!-- ── SEMANA 1 ── -->
+    <div class="cg-week active" id="cg-w0">
+      <div class="cg-week-label">Semana 1 — Valor y conexión desde el primer post</div>
+      <div class="cg-day-row"><div class="cg-day-label">Lun</div><div class="cg-cards"><div class="cg-card cg-teal"><div class="cg-card-title">Reel: "Nadie te dice esto sobre empezar de cero"</div><div class="cg-card-body">3 verdades sobre reiniciarse. Habla a cámara, tono íntimo. Tu historia aparece sola sin que la cuentes entera.</div><div class="cg-card-hook">"¿Sabes cuándo supe que estaba sanando? Cuando dejé de necesitar ruido para no pensar."</div><div class="cg-pills"><span class="cg-pill">Inspiración</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Talking head</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mar</div><div class="cg-cards"><div class="cg-card cg-amber"><div class="cg-card-title">TikTok: "Lo que me dije el día que decidí irme"</div><div class="cg-card-body">Audio trending de fondo + frases cortas en pantalla. Sin explicar el contexto — el texto hace el trabajo.</div><div class="cg-card-hook">"Ya no era yo. Y ese día decidí serlo."</div><div class="cg-pills"><span class="cg-pill">Humor + emoción</span><span class="cg-pill">Solo TikTok</span><span class="cg-pill">Texto + audio viral</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mié</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: encuesta + reacción al reel del lunes</div><div class="cg-card-body">¿Cuál verdad te llegó más? Sticker encuesta. Muestra resultados y reacciona al día siguiente.</div><div class="cg-pills"><span class="cg-pill">Engagement</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Jue</div><div class="cg-cards"><div class="cg-card cg-pink"><div class="cg-card-title">Reel: "Por qué me levanto a las 6am aunque no quiera"</div><div class="cg-card-body">Clips de tu rutina de mañana. Voz en off o texto: no es disciplina, es elegir quién quiero ser.</div><div class="cg-card-hook">"5am. No tengo ganas. Voy igual."</div><div class="cg-pills"><span class="cg-pill">Mujer activa</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Reel POV / vlog</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Vie</div><div class="cg-cards"><div class="cg-card cg-purple"><span class="cg-star">Pieza fuerte</span><div class="cg-card-title">Playlist: "Para salir de una relación tóxica" — Parte 1</div><div class="cg-card-body">Tu guión ya listo. Refuerza la transición visual entre canción 3 y 4. Publica TikTok de mañana, IG en la tarde.</div><div class="cg-card-hook">"Canciones que necesitas si saliste de una relación tóxica… y estás reconectando contigo."</div><div class="cg-pills"><span class="cg-pill">Serie Playlist</span><span class="cg-pill">TikTok primero · IG después</span><span class="cg-pill">Lista / acting</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Sáb</div><div class="cg-cards"><div class="cg-card cg-blue"><div class="cg-card-title">Reel UGC: Get ready with me para trabajar</div><div class="cg-card-body">Tu rutina de mañana arreglándote. Ropa, accesorios. Tono de amiga. Portafolio visual para marcas de moda.</div><div class="cg-card-hook">"Mi hija ya está lista y yo apenas empiezo."</div><div class="cg-pills"><span class="cg-pill">UGC / Moda</span><span class="cg-pill">IG Reel</span><span class="cg-pill">GRWM</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Dom</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: canción de la semana + cierre</div><div class="cg-card-body">Lo que estás escuchando hoy. Una frase que resume tu semana. Espontáneo, sin guión.</div><div class="cg-pills"><span class="cg-pill">Comunidad</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+    </div>
+
+    <!-- ── SEMANA 2 ── -->
+    <div class="cg-week" id="cg-w1">
+      <div class="cg-week-label">Semana 2 — Humor, maternidad y playlist parte 2</div>
+      <div class="cg-day-row"><div class="cg-day-label">Lun</div><div class="cg-cards"><div class="cg-card cg-teal"><div class="cg-card-title">Reel: "Una cosa que nadie te enseña sobre quererte"</div><div class="cg-card-body">El silencio como señal de sanación. Continuación de tu línea inspiracional sin repetir los videos anteriores.</div><div class="cg-card-hook">"Aprender a estar sola sin sentirte sola es el mayor flex."</div><div class="cg-pills"><span class="cg-pill">Inspiración</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Talking head</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mar</div><div class="cg-cards"><div class="cg-card cg-amber"><div class="cg-card-title">TikTok: Sketch "Mi yo del pasado vs. yo ahora"</div><div class="cg-card-body">Actúas dos versiones tuyas. Antes buscando validación, ahora sin necesitarla. Humor + verdad. Puedes hacerlo sola con corte o con Caro.</div><div class="cg-card-hook">"Yo antes: ¿Le gustaré? Yo ahora: ¿Hay café? Perfecto."</div><div class="cg-pills"><span class="cg-pill">Humor + Acting</span><span class="cg-pill">Solo TikTok</span><span class="cg-pill">Sketch / corte</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mié</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: reacción a comentarios de la playlist</div><div class="cg-card-body">Toma los mejores comentarios del viernes y reacciona. Alarga la vida del video sin grabar nada nuevo.</div><div class="cg-pills"><span class="cg-pill">Engagement</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Jue</div><div class="cg-cards"><div class="cg-card cg-coral"><div class="cg-card-title">Reel: "Lo que aprendí siendo mamá a los 18"</div><div class="cg-card-body">Primera vez que tocas maternidad — desde el aprendizaje, no el sacrificio. 3 cosas que esa experiencia temprana te dio.</div><div class="cg-card-hook">"Me quitó cosas. Pero también me dio una que pocas tienen: claridad."</div><div class="cg-pills"><span class="cg-pill">Reinvención</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Talking head</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Vie</div><div class="cg-cards"><div class="cg-card cg-blue"><div class="cg-card-title">Reel: Reseña lifestyle — cafetería o lugar nuevo en Lima</div><div class="cg-card-body">Llegada + ambiente + pedido + reacción genuina. Tono de amiga recomendando. Portafolio UGC para marcas de food.</div><div class="cg-card-hook">"Encontré un lugar en Lima del que nadie habla y ya es mi favorito."</div><div class="cg-pills"><span class="cg-pill">UGC Lifestyle</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Reseña / vlog corto</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Sáb</div><div class="cg-cards"><div class="cg-card cg-purple"><span class="cg-star">Pieza fuerte</span><div class="cg-card-title">Playlist: "Para salir de una relación tóxica" — Parte 2</div><div class="cg-card-body">Lanza mientras el algoritmo te empuja del viernes. Misma energía, canciones nuevas. Cierra prometiendo Parte 3.</div><div class="cg-card-hook">"Dijeron que querían más… acá está la Parte 2."</div><div class="cg-pills"><span class="cg-pill">Serie Playlist</span><span class="cg-pill">TikTok primero · IG después</span><span class="cg-pill">Lista / acting</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Dom</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: caja de preguntas libre</div><div class="cg-card-body">"Pregúntame lo que quieras." Responde 3–5 preguntas en mini videos de 15 seg. Material para contenidos futuros.</div><div class="cg-pills"><span class="cg-pill">Comunidad</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+    </div>
+
+    <!-- ── SEMANA 3 ── -->
+    <div class="cg-week" id="cg-w2">
+      <div class="cg-week-label">Semana 3 — Viralidad, humor y contenido relatable</div>
+      <div class="cg-day-row"><div class="cg-day-label">Lun</div><div class="cg-cards"><div class="cg-card cg-amber"><div class="cg-card-title">TikTok: Horóscopo vs. mi vida real</div><div class="cg-card-body">Tu signo + predicción típica + tu realidad de mamá soltera, marketer y creadora. Tom el gato puede aparecer.</div><div class="cg-card-hook">"Capricornio: semana de amor. Yo: tres reuniones y Tom me mordió."</div><div class="cg-pills"><span class="cg-pill">Humor + Horóscopo</span><span class="cg-pill">Solo TikTok</span><span class="cg-pill">Reaction / trend</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mar</div><div class="cg-cards"><div class="cg-card cg-teal"><div class="cg-card-title">Reel: "3 señales de que ya estás sanando"</div><div class="cg-card-body">Formato lista. Señales reales, no de manual de autoayuda. Las tuyas. Con humor intercalado en cada punto.</div><div class="cg-card-hook">"Número 1: ya no revisas su perfil. Mentira, sí revisas, pero solo una vez."</div><div class="cg-pills"><span class="cg-pill">Inspiración</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Lista / talking head</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mié</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: "¿En cuál de estas señales estás tú?"</div><div class="cg-card-body">Comparte las 3 señales del martes una por una con opción de votar. Genera conversación y datos de tu audiencia.</div><div class="cg-pills"><span class="cg-pill">Engagement</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Jue</div><div class="cg-cards"><div class="cg-card cg-blue"><div class="cg-card-title">Reel: "Una semana siendo mamá soltera en Lima"</div><div class="cg-card-body">Mini vlog de tu semana real. Sin glamour. El trabajo, el gym, tu hija, un café sola. Construye comunidad más que cualquier reflexión.</div><div class="cg-card-hook">"Nadie me preguntó si estaba lista. Y acá estoy."</div><div class="cg-pills"><span class="cg-pill">Lifestyle / UGC</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Vlog semana</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Vie</div><div class="cg-cards"><div class="cg-card cg-purple"><span class="cg-star">Pieza fuerte</span><div class="cg-card-title">Playlist: "Para mamás que trabajan solas"</div><div class="cg-card-body">4 canciones para los días que quieres renunciar a todo pero no puedes. Variante de tu serie que amplía audiencia.</div><div class="cg-card-hook">"Para cuando eres mamá, jefa de ti misma y ya no tienes más paciencia."</div><div class="cg-pills"><span class="cg-pill">Serie Playlist</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Lista / acting</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Sáb</div><div class="cg-cards"><div class="cg-card cg-amber"><div class="cg-card-title">TikTok: Parodia o sketch con Caro</div><div class="cg-card-body">Ella hace de "la que no entiende tu vida" y tú eres la mamá limeña explicándole todo. Potencial alto en ambas plataformas.</div><div class="cg-card-hook">"Caro: ¿pero por qué madrugás tanto? Yo: porque soy mamá, Caro."</div><div class="cg-pills"><span class="cg-pill">Humor + Actuación</span><span class="cg-pill">TikTok primero · IG después</span><span class="cg-pill">Sketch duo</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Dom</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: lo que aprendiste esta semana</div><div class="cg-card-body">Una historia rápida — un aprendizaje real, sin producción. Tu comunidad más cercana espera esto los domingos.</div><div class="cg-pills"><span class="cg-pill">Comunidad</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+    </div>
+
+    <!-- ── SEMANA 4 ── -->
+    <div class="cg-week" id="cg-w3">
+      <div class="cg-week-label">Semana 4 — Consolidar, inspirar y hablarle a marcas</div>
+      <div class="cg-day-row"><div class="cg-day-label">Lun</div><div class="cg-cards"><div class="cg-card cg-teal"><div class="cg-card-title">Reel: "Lo que cambió en mí este mes"</div><div class="cg-card-body">Cierre del mes con reflexión poderosa. No es resumen, es evolución. Qué pensabas hace 30 días vs. qué piensas hoy.</div><div class="cg-card-hook">"Hace un mes tenía miedo. Hoy también. Pero publico igual."</div><div class="cg-pills"><span class="cg-pill">Inspiración</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Talking head</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mar</div><div class="cg-cards"><div class="cg-card cg-amber"><div class="cg-card-title">TikTok: "Cosas que hago sola y ya no me parecen tristes"</div><div class="cg-card-body">Formato lista con humor. Ir al cine sola, comer sola, caminar sola. Altamente compartible por mujeres en proceso de independencia.</div><div class="cg-card-hook">"Ir sola al cine: de pena a plan favorito en 6 meses."</div><div class="cg-pills"><span class="cg-pill">Humor relatable</span><span class="cg-pill">Solo TikTok</span><span class="cg-pill">Lista / trend</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mié</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: "¿Qué contenido quieren ver el próximo mes?"</div><div class="cg-card-body">Caja de preguntas + encuesta con 4 opciones. Tu audiencia construye contigo la grilla del mes siguiente.</div><div class="cg-pills"><span class="cg-pill">Comunidad</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Jue</div><div class="cg-cards"><div class="cg-card cg-blue"><div class="cg-card-title">Reel UGC: outfit del mes + productos favoritos</div><div class="cg-card-body">3 prendas o productos que usaste este mes. Tono natural. Este es tu portafolio más directo para marcas de moda y lifestyle.</div><div class="cg-card-hook">"Lo que usé todo el mes y por qué no lo suelto."</div><div class="cg-pills"><span class="cg-pill">UGC / Moda</span><span class="cg-pill">IG Reel</span><span class="cg-pill">Haul / reseña</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Vie</div><div class="cg-cards"><div class="cg-card cg-coral"><span class="cg-star">Pieza ancla del mes</span><div class="cg-card-title">Reel: "Por qué decidí perseguir mis sueños a los 29"</div><div class="cg-card-body">Tu manifiesto de marca. No es presentación — es declaración. Qué te detuvo, qué cambió, qué viene. Este reel vive en tu perfil para siempre.</div><div class="cg-card-hook">"A los 29, con una hija, trabajo y miedos, decidí que ya era suficiente esperar."</div><div class="cg-pills"><span class="cg-pill">Reinvención</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Talking head</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Sáb</div><div class="cg-cards"><div class="cg-card cg-purple"><span class="cg-star">Pieza fuerte</span><div class="cg-card-title">Playlist: "Para cuando cumples años y te sientes rara"</div><div class="cg-card-body">Especial de cumpleaños. Canciones para los que cumplen años en modo reflexivo, no en modo fiesta. Muy compartible en tu rango de edad.</div><div class="cg-card-hook">"Para las que cumplieron años y en vez de celebrar, se pusieron a pensar."</div><div class="cg-pills"><span class="cg-pill">Serie Playlist</span><span class="cg-pill">TikTok primero · IG después</span><span class="cg-pill">Lista / acting</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Dom</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: cierre de mes + agradecimiento a comunidad</div><div class="cg-card-body">Sin producción. Tú, a cámara, diciéndole gracias a las que llegaron este mes. Humaniza tu marca más que cualquier reel producido.</div><div class="cg-pills"><span class="cg-pill">Comunidad</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+    </div>
+  </section>
 
   <!-- FITNESS + COMIDAS -->
   <div class="grid-2">
@@ -499,23 +766,13 @@
     <!-- ENTRENO -->
     <section class="card" id="fitness">
       <div class="card-title"><span class="icon">🏋️</span> Plan de Entrenamiento</div>
-      <table class="fit-table">
-        <thead>
-          <tr>
-            <th>Día</th>
-            <th>Entrenamiento</th>
-            <th>Detalle</th>
-            <th>Objetivo</th>
-          </tr>
-        </thead>
-        <tbody id="fit-tbody"></tbody>
-      </table>
+      <div class="fit-days" id="fit-days-container"></div>
     </section>
 
     <!-- COMIDAS -->
     <section class="card" id="comidas">
-      <div class="card-title"><span class="icon">🥗</span> Comidas</div>
-      <div class="routine-list" id="meals-list"></div>
+      <div class="card-title"><span class="icon">🥗</span> Plan Nutricional Semanal</div>
+      <div class="meal-days" id="meal-days-container"></div>
     </section>
   </div>
 
@@ -645,92 +902,290 @@
   renderGoals('personal'); renderGoals('profesional');
 
   /* ── CONTENT GRID ─────────────────────────────────────── */
-  const WEEK_LABELS = ['L','M','X','J','V','S','D','L','M','X','J','V','S','D'];
-  const STATUS_CYCLE = ['','done','prog','plan'];
-  function renderGrid(platform) {
-    const grid = document.getElementById(`content-grid-${platform}`);
-    const data = load(`grid_${platform}`, Array(12).fill({txt:'',status:''}));
-    grid.innerHTML = '';
-    data.forEach((cell, i) => {
-      const div = document.createElement('div'); div.className = 'content-cell';
-      div.innerHTML = `<div class="status-dot ${cell.status||''}"></div><div class="cell-day">${WEEK_LABELS[i]}</div><span class="cell-text" contenteditable="true" data-placeholder="">${cell.txt||''}</span>`;
-      const dot = div.querySelector('.status-dot');
-      dot.addEventListener('click', e => {
-        e.stopPropagation();
-        const d = load(`grid_${platform}`, Array(12).fill({txt:'',status:''}));
-        const idx = STATUS_CYCLE.indexOf(d[i].status||'');
-        d[i] = {...d[i], status: STATUS_CYCLE[(idx+1)%STATUS_CYCLE.length]};
-        save(`grid_${platform}`, d);
-        renderGrid(platform);
-      });
-      const span = div.querySelector('.cell-text');
-      span.addEventListener('input', () => {
-        const d = load(`grid_${platform}`, Array(12).fill({txt:'',status:''}));
-        d[i] = {...d[i], txt: span.textContent};
-        save(`grid_${platform}`, d);
-      });
-      grid.appendChild(div);
-    });
+  function cgShow(i) {
+    document.querySelectorAll('.cg-week').forEach((w,j) => w.classList.toggle('active', j===i));
+    document.querySelectorAll('.cg-tab').forEach((t,j) => t.classList.toggle('active', j===i));
   }
-  function switchPlatform(btn, plat) {
-    document.querySelectorAll('.plat-tab').forEach(b=>b.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById('content-grid-ig').style.display = plat==='ig'?'grid':'none';
-    document.getElementById('content-grid-tt').style.display = plat==='tt'?'grid':'none';
-  }
-  renderGrid('ig'); renderGrid('tt');
 
-  /* ── FITNESS ──────────────────────────────────────────── */
+  /* ── FITNESS ACCORDION ────────────────────────────────── */
   const FIT_PLAN = [
-    { day:'Lunes',    type:'strength', label:'Glúteos + Piernas',
-      detail:'Hip thrust · sentadilla goblet · peso muerto · abducciones · patadas de glúteo',
-      goal:'Construcción muscular' },
-    { day:'Martes',   type:'strength', label:'Tren superior + Core',
-      detail:'Press hombro · remo · bíceps · tríceps · plancha · elevaciones · hollow hold',
-      goal:'Definición' },
-    { day:'Miércoles',type:'run',      label:'Running suave + activación',
-      detail:'20–30 min trote ligero + glúteos (puentes · sentadillas · abducciones)',
-      goal:'Recuperación activa' },
-    { day:'Jueves',   type:'run',      label:'Running social',
-      detail:'30–40 min trote suave con amigas',
-      goal:'Cardio ligero' },
-    { day:'Viernes',  type:'strength', label:'Glúteos + Piernas',
-      detail:'Hip thrust · búlgara · peso muerto · step ups · abducciones',
-      goal:'Estimulación fuerte' },
-    { day:'Sábado',   type:'rest',     label:'Descanso',
-      detail:'Recuperación total',
-      goal:'Reducir estrés' },
-    { day:'Domingo',  type:'run',      label:'Running largo',
-      detail:'10K → 12K → 14K → 16K (progresivo)',
-      goal:'Media maratón' },
+    {
+      day:'Lunes', shortDay:'LUN', type:'strength',
+      label:'Glúteos + Piernas 🔥', goal:'Construcción muscular',
+      weight:'Mancuernas ligeras (3–6 kg)',
+      sections:[
+        { title: null, exercises:[
+          { name:'Hip thrust',           sets:'4×15 (pausa 2 seg arriba)' },
+          { name:'Sentadilla goblet',    sets:'4×15' },
+          { name:'Peso muerto rumano',   sets:'4×12' },
+          { name:'Abducciones',          sets:'4×20' },
+          { name:'Patada de glúteo',     sets:'4×15 por pierna' },
+        ]}
+      ],
+      rest:'Descanso: 45–60 seg entre series'
+    },
+    {
+      day:'Martes', shortDay:'MAR', type:'strength',
+      label:'Tren superior + Core 💪', goal:'Definición',
+      weight:'Mancuernas ligeras (2–5 kg)',
+      sections:[
+        { title:'Tren superior', exercises:[
+          { name:'Press hombro',               sets:'3×12' },
+          { name:'Remo con mancuerna',         sets:'3×12 por lado' },
+          { name:'Curl bíceps',                sets:'3×12' },
+          { name:'Tríceps',                    sets:'3×12' },
+        ]},
+        { title:'Core — 3 rondas', exercises:[
+          { name:'Plancha',                    sets:'30 seg' },
+          { name:'Elevaciones de piernas',     sets:'12 rep' },
+          { name:'Bird dog',                   sets:'12 por lado' },
+          { name:'Hollow hold',                sets:'20 seg' },
+        ]}
+      ],
+      rest:null
+    },
+    {
+      day:'Miércoles', shortDay:'MIÉ', type:'run',
+      label:'Running suave + Activación 🏃‍♀️', goal:'Recuperación activa',
+      weight:null,
+      sections:[
+        { title:null, exercises:[
+          { name:'Trote ligero',               sets:'20–30 min' },
+          { name:'Puente de glúteo',           sets:'3×20' },
+          { name:'Sentadilla sin peso',        sets:'3×15' },
+          { name:'Abducciones',                sets:'3×20' },
+        ]}
+      ],
+      rest:null
+    },
+    {
+      day:'Jueves', shortDay:'JUE', type:'run',
+      label:'Running social 🏃‍♀️', goal:'Cardio ligero + disfrute',
+      weight:null,
+      sections:[
+        { title:null, exercises:[
+          { name:'Trote cómodo con amigas',    sets:'30–40 min' },
+        ]}
+      ],
+      rest:null
+    },
+    {
+      day:'Viernes', shortDay:'VIE', type:'strength',
+      label:'Glúteos + Piernas Fuerte 🍑', goal:'Estimulación fuerte',
+      weight:'Mancuernas moderadas (5–8 kg)',
+      sections:[
+        { title:null, exercises:[
+          { name:'Hip thrust',                 sets:'4×15' },
+          { name:'Sentadilla búlgara',         sets:'4×12 por pierna' },
+          { name:'Peso muerto rumano',         sets:'4×12' },
+          { name:'Step ups',                   sets:'4×12 por pierna' },
+          { name:'Abducciones',                sets:'4×20' },
+        ]}
+      ],
+      rest:'Descanso: 60 seg entre series'
+    },
+    {
+      day:'Sábado', shortDay:'SÁB', type:'rest',
+      label:'Descanso 🛌', goal:'Recuperar',
+      weight:null,
+      sections:[
+        { title:null, exercises:[
+          { name:'Recuperación total', sets:'' },
+          { name:'Opcional: estiramientos suaves', sets:'' },
+        ]}
+      ],
+      rest:null
+    },
+    {
+      day:'Domingo', shortDay:'DOM', type:'run',
+      label:'Running largo 🔥', goal:'Media maratón',
+      weight:'Ritmo cómodo — puedes hablar',
+      sections:[
+        { title:'Progresión semanal', exercises:[
+          { name:'Semana 1', sets:'10 km' },
+          { name:'Semana 2', sets:'12 km' },
+          { name:'Semana 3', sets:'14 km' },
+          { name:'Semana 4', sets:'16 km' },
+        ]}
+      ],
+      rest:null
+    },
   ];
+
   const todayFull = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'][now.getDay()];
-  const tbody = document.getElementById('fit-tbody');
-  FIT_PLAN.forEach(r => {
+  const fitContainer = document.getElementById('fit-days-container');
+
+  FIT_PLAN.forEach((r, idx) => {
     const isToday = r.day === todayFull;
-    const tr = document.createElement('tr');
-    if (isToday) tr.style.background = 'var(--tag-bg)';
-    tr.innerHTML = `
-      <td class="fit-day-cell${isToday?' today-row':''}">${r.day.substring(0,3).toUpperCase()}</td>
-      <td><div class="fit-type ${r.type}">${r.label}</div></td>
-      <td><div class="fit-detail">${r.detail}</div></td>
-      <td><span class="fit-goal-tag">${r.goal}</span></td>`;
-    tbody.appendChild(tr);
+    const card = document.createElement('div');
+    card.className = `fit-day-card${isToday ? ' today-card open' : ''}`;
+
+    // build exercises HTML
+    let sectionsHtml = '';
+    r.sections.forEach(sec => {
+      if (sec.title) sectionsHtml += `<div class="fit-section-label">${sec.title}</div>`;
+      sectionsHtml += '<div class="fit-exercises">';
+      sec.exercises.forEach(ex => {
+        sectionsHtml += `<div class="fit-ex-row"><span class="fit-ex-name">${ex.name}</span>${ex.sets ? `<span class="fit-ex-sets">${ex.sets}</span>` : ''}</div>`;
+      });
+      sectionsHtml += '</div>';
+    });
+
+    card.innerHTML = `
+      <div class="fit-day-header">
+        <div class="fit-day-left">
+          <span class="fit-day-tag${isToday?' today-tag':''}">${r.shortDay}</span>
+          <span class="fit-day-name ${r.type}">${r.label}</span>
+        </div>
+        <div class="fit-day-right">
+          <span class="fit-goal-pill">${r.goal}</span>
+          <span class="fit-chevron">▾</span>
+        </div>
+      </div>
+      <div class="fit-day-body">
+        ${r.weight ? `<div class="fit-weight-note">⚖️ ${r.weight}</div>` : '<div style="height:10px"></div>'}
+        ${sectionsHtml}
+        ${r.rest ? `<div class="fit-rest-note">⏱ ${r.rest}</div>` : ''}
+      </div>`;
+
+    card.querySelector('.fit-day-header').addEventListener('click', () => {
+      card.classList.toggle('open');
+    });
+    fitContainer.appendChild(card);
   });
 
-  /* ── MEALS ────────────────────────────────────────────── */
-  const mealSlots = ['Desayuno','Media mañana','Almuerzo','Merienda','Cena'];
-  const mealDefaults = ['Avena + frutas','Frutos secos','Proteína + carbohidrato','Yogur con granola','Proteína + verduras'];
-  const mealList = document.getElementById('meals-list');
-  const mealData = load('meals', mealDefaults);
-  mealSlots.forEach((s,i) => {
-    const row = document.createElement('div'); row.className = 'routine-row';
-    row.innerHTML = `<span class="routine-day-tag" style="width:72px;font-size:.66rem">${s}</span><span class="routine-val" contenteditable="true" data-placeholder="...">${mealData[i]||''}</span>`;
-    row.querySelector('.routine-val').addEventListener('input', () => {
-      const vals = [...mealList.querySelectorAll('.routine-val')].map(el=>el.textContent);
-      save('meals', vals);
+  // Notes card
+  fitContainer.insertAdjacentHTML('beforeend', `
+    <div class="fit-notes-card">
+      <div class="fit-notes-title">📊 Notas importantes</div>
+      <div class="fit-notes-list">
+        <div class="fit-note-item">Proteína diaria: <strong>100–110 g</strong></div>
+        <div class="fit-note-item">Agua: <strong>2–2.5 L</strong></div>
+        <div class="fit-note-item">Progresión: subir peso cada semana si te sentís cómoda</div>
+        <div class="fit-note-item">Enfocate en la <strong>técnica</strong> antes que en el peso</div>
+      </div>
+    </div>
+  `);
+
+  /* ── MEALS ACCORDION ──────────────────────────────────── */
+  const MEAL_PLAN = [
+    {
+      day: 'Lunes', short: 'LUN', tag: 'Gym',
+      meals: [
+        { label:'Desayuno',   food:'Tostadas + huevo + claras + jamón',  cal:400, prot:32, carb:30, fat:15 },
+        { label:'Almuerzo',   food:'Pollo + arroz + ensalada',            cal:500, prot:35, carb:45, fat:12 },
+        { label:'Pre-entreno',food:'Yogurt light + plátano',              cal:180, prot:8,  carb:30, fat:2  },
+        { label:'Cena',       food:'Pollo + ensalada',                    cal:350, prot:35, carb:10, fat:10 },
+      ]
+    },
+    {
+      day: 'Martes', short: 'MAR', tag: 'Gym',
+      meals: [
+        { label:'Desayuno',   food:'Yogurt griego + avena + maní',        cal:400, prot:25, carb:35, fat:15 },
+        { label:'Almuerzo',   food:'Atún + garbanzos + ensalada',         cal:450, prot:30, carb:40, fat:12 },
+        { label:'Pre-entreno',food:'Yogurt light',                        cal:100, prot:6,  carb:15, fat:2  },
+        { label:'Cena',       food:'Huevos + claras + ensalada',          cal:300, prot:30, carb:5,  fat:12 },
+      ]
+    },
+    {
+      day: 'Miércoles', short: 'MIÉ', tag: 'Gym',
+      meals: [
+        { label:'Desayuno',   food:'Pan pita + huevo + jamón + queso',    cal:420, prot:30, carb:35, fat:15 },
+        { label:'Almuerzo',   food:'Pollo + frejoles + ensalada',         cal:500, prot:35, carb:40, fat:12 },
+        { label:'Pre-entreno',food:'½ plátano',                           cal:60,  prot:1,  carb:15, fat:0  },
+        { label:'Cena',       food:'Atún + ensalada',                     cal:300, prot:30, carb:5,  fat:10 },
+      ]
+    },
+    {
+      day: 'Jueves', short: 'JUE', tag: 'Running',
+      meals: [
+        { label:'Desayuno',   food:'Tostadas + huevo + jamón',            cal:400, prot:30, carb:30, fat:14 },
+        { label:'Almuerzo',   food:'Pollo + arroz + ensalada',            cal:500, prot:35, carb:45, fat:12 },
+        { label:'Pre-run',    food:'Yogurt light + plátano',              cal:180, prot:8,  carb:30, fat:2  },
+        { label:'Cena',       food:'Huevos + ensalada',                   cal:300, prot:28, carb:5,  fat:12 },
+      ]
+    },
+    {
+      day: 'Viernes', short: 'VIE', tag: 'Flexible',
+      meals: [
+        { label:'Desayuno',   food:'Yogurt griego + avena',               cal:380, prot:25, carb:35, fat:10 },
+        { label:'Almuerzo',   food:'Pollo + ensalada + arroz',            cal:500, prot:35, carb:45, fat:12 },
+        { label:'Pre-entreno',food:'Yogurt light',                        cal:100, prot:6,  carb:15, fat:2  },
+        { label:'Cena',       food:'Pollo a la brasa + ensalada',         cal:500, prot:40, carb:15, fat:20 },
+      ]
+    },
+    {
+      day: 'Sábado', short: 'SÁB', tag: 'Descanso',
+      meals: [
+        { label:'Desayuno',   food:'Tostadas + huevo',                    cal:350, prot:25, carb:30, fat:12 },
+        { label:'Almuerzo',   food:'Libre controlado',                    cal:600, prot:25, carb:50, fat:25 },
+        { label:'Cena',       food:'Salida moderada',                     cal:600, prot:30, carb:40, fat:25 },
+      ]
+    },
+    {
+      day: 'Domingo', short: 'DOM', tag: 'Fondo Running',
+      meals: [
+        { label:'Pre-run',       food:'Yogurt + plátano',                 cal:180, prot:8,  carb:30, fat:2  },
+        { label:'Post-run desal',food:'Tostadas + huevos',                cal:400, prot:30, carb:30, fat:15 },
+        { label:'Almuerzo',      food:'Pollo + arroz + ensalada',         cal:550, prot:35, carb:50, fat:12 },
+        { label:'Cena',          food:'Huevos + ensalada',                cal:300, prot:28, carb:5,  fat:12 },
+      ]
+    },
+  ];
+
+  const mealContainer = document.getElementById('meal-days-container');
+  const todayMeal = ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'][now.getDay()];
+
+  MEAL_PLAN.forEach(d => {
+    const isToday = d.day === todayMeal;
+    const totalCal  = d.meals.reduce((s,m) => s + m.cal,  0);
+    const totalProt = d.meals.reduce((s,m) => s + m.prot, 0);
+    const totalCarb = d.meals.reduce((s,m) => s + m.carb, 0);
+    const totalFat  = d.meals.reduce((s,m) => s + m.fat,  0);
+
+    const mealsHtml = d.meals.map(m => `
+      <div class="meal-item">
+        <div class="meal-item-top">
+          <span class="meal-label">${m.label}</span>
+          <span class="meal-food">${m.food}</span>
+        </div>
+        <div class="meal-macros">
+          <span class="macro-pill macro-cal">🔥 ${m.cal} cal</span>
+          <span class="macro-pill macro-prot">🥩 P: ${m.prot}g</span>
+          <span class="macro-pill macro-carb">🌾 C: ${m.carb}g</span>
+          <span class="macro-pill macro-fat">🥑 G: ${m.fat}g</span>
+        </div>
+      </div>`).join('');
+
+    const card = document.createElement('div');
+    card.className = `meal-day-card${isToday ? ' today-meal open' : ''}`;
+    card.innerHTML = `
+      <div class="meal-day-header">
+        <div class="meal-day-left">
+          <span class="meal-day-short${isToday?' today-tag':''}">${d.short}</span>
+          <span class="meal-day-name">${d.day}</span>
+          <span class="meal-day-cals" style="font-size:.67rem;padding:2px 8px;border-radius:6px;background:var(--tag-bg);border:1px solid var(--border);color:var(--muted)">${d.tag}</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <span class="meal-day-cals">🔥 ${totalCal} cal</span>
+          <span class="meal-chevron">▾</span>
+        </div>
+      </div>
+      <div class="meal-day-body">
+        ${mealsHtml}
+        <div class="meal-day-total">
+          <span class="meal-total-label">Total día</span>
+          <span class="macro-pill macro-cal">🔥 ${totalCal} cal</span>
+          <span class="macro-pill macro-prot">🥩 P: ${totalProt}g</span>
+          <span class="macro-pill macro-carb">🌾 C: ${totalCarb}g</span>
+          <span class="macro-pill macro-fat">🥑 G: ${totalFat}g</span>
+        </div>
+      </div>`;
+
+    card.querySelector('.meal-day-header').addEventListener('click', () => {
+      card.classList.toggle('open');
     });
-    mealList.appendChild(row);
+    mealContainer.appendChild(card);
   });
 </script>
 </body>
