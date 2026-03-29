@@ -1070,65 +1070,119 @@
   /* ── MEALS ACCORDION ──────────────────────────────────── */
   const MEAL_PLAN = [
     {
-      day: 'Lunes', short: 'LUN', tag: 'Gym',
+      day: 'Lunes', short: 'LUN', tag: 'Gym 💪',
       meals: [
-        { label:'Desayuno',   food:'Tostadas + huevo + claras + jamón',  cal:400, prot:32, carb:30, fat:15 },
-        { label:'Almuerzo',   food:'Pollo + arroz + ensalada',            cal:500, prot:35, carb:45, fat:12 },
-        { label:'Pre-entreno',food:'Yogurt light + plátano',              cal:180, prot:8,  carb:30, fat:2  },
-        { label:'Cena',       food:'Pollo + ensalada',                    cal:350, prot:35, carb:10, fat:10 },
+        { label:'Desayuno',
+          food:'2 tostadas integrales (60g) · 2 huevos + 2 claras · 2 lonjas jamón pavita (40g) · lechuga + tomate',
+          cal:400, prot:32, carb:30, fat:15 },
+        { label:'Almuerzo',
+          food:'120g pechuga de pollo · ½ taza arroz cocido (100g) · ensalada libre',
+          cal:500, prot:35, carb:45, fat:12 },
+        { label:'Pre-entreno',
+          food:'1 yogurt light (125g) · ½ plátano (60g)',
+          cal:180, prot:8, carb:30, fat:2 },
+        { label:'Cena',
+          food:'120g pollo · ensalada grande',
+          cal:350, prot:35, carb:10, fat:10 },
       ]
     },
     {
-      day: 'Martes', short: 'MAR', tag: 'Gym',
+      day: 'Martes', short: 'MAR', tag: 'Gym 💪',
       meals: [
-        { label:'Desayuno',   food:'Yogurt griego + avena + maní',        cal:400, prot:25, carb:35, fat:15 },
-        { label:'Almuerzo',   food:'Atún + garbanzos + ensalada',         cal:450, prot:30, carb:40, fat:12 },
-        { label:'Pre-entreno',food:'Yogurt light',                        cal:100, prot:6,  carb:15, fat:2  },
-        { label:'Cena',       food:'Huevos + claras + ensalada',          cal:300, prot:30, carb:5,  fat:12 },
+        { label:'Desayuno',
+          food:'200g yogurt griego · 30g avena · 10g mantequilla de maní',
+          cal:400, prot:25, carb:35, fat:15 },
+        { label:'Almuerzo',
+          food:'1 lata atún (120g drenado) · ½ taza garbanzos (100g) · ensalada',
+          cal:450, prot:30, carb:40, fat:12 },
+        { label:'Pre-entreno',
+          food:'1 yogurt light (125g)',
+          cal:100, prot:6, carb:15, fat:2 },
+        { label:'Cena',
+          food:'2 huevos + 4 claras · ensalada',
+          cal:300, prot:30, carb:5, fat:12 },
       ]
     },
     {
-      day: 'Miércoles', short: 'MIÉ', tag: 'Gym',
+      day: 'Miércoles', short: 'MIÉ', tag: 'Gym 💪',
       meals: [
-        { label:'Desayuno',   food:'Pan pita + huevo + jamón + queso',    cal:420, prot:30, carb:35, fat:15 },
-        { label:'Almuerzo',   food:'Pollo + frejoles + ensalada',         cal:500, prot:35, carb:40, fat:12 },
-        { label:'Pre-entreno',food:'½ plátano',                           cal:60,  prot:1,  carb:15, fat:0  },
-        { label:'Cena',       food:'Atún + ensalada',                     cal:300, prot:30, carb:5,  fat:10 },
+        { label:'Desayuno',
+          food:'1 pan pita (60g) · 2 huevos + 1 clara · 2 lonjas jamón (40g) · 20g queso light',
+          cal:420, prot:30, carb:35, fat:15 },
+        { label:'Almuerzo',
+          food:'120g pollo · 1 taza frejoles (150g) · ensalada',
+          cal:500, prot:35, carb:40, fat:12 },
+        { label:'Pre-entreno',
+          food:'½ plátano (60g)',
+          cal:60, prot:1, carb:15, fat:0 },
+        { label:'Cena',
+          food:'1 lata atún (120g) · ensalada',
+          cal:300, prot:30, carb:5, fat:10 },
       ]
     },
     {
-      day: 'Jueves', short: 'JUE', tag: 'Running',
+      day: 'Jueves', short: 'JUE', tag: 'Running 🏃‍♀️',
       meals: [
-        { label:'Desayuno',   food:'Tostadas + huevo + jamón',            cal:400, prot:30, carb:30, fat:14 },
-        { label:'Almuerzo',   food:'Pollo + arroz + ensalada',            cal:500, prot:35, carb:45, fat:12 },
-        { label:'Pre-run',    food:'Yogurt light + plátano',              cal:180, prot:8,  carb:30, fat:2  },
-        { label:'Cena',       food:'Huevos + ensalada',                   cal:300, prot:28, carb:5,  fat:12 },
+        { label:'Desayuno',
+          food:'2 tostadas (60g) · 2 huevos + 2 claras · jamón pavita (40g)',
+          cal:400, prot:30, carb:30, fat:14 },
+        { label:'Almuerzo',
+          food:'120g pollo · ½ taza arroz (100g) · ensalada',
+          cal:500, prot:35, carb:45, fat:12 },
+        { label:'Pre-run',
+          food:'1 yogurt light (125g) · 1 plátano pequeño (100g)',
+          cal:180, prot:8, carb:30, fat:2 },
+        { label:'Cena',
+          food:'2 huevos + 3 claras · ensalada',
+          cal:300, prot:28, carb:5, fat:12 },
       ]
     },
     {
-      day: 'Viernes', short: 'VIE', tag: 'Flexible',
+      day: 'Viernes', short: 'VIE', tag: 'Flexible 🌿',
       meals: [
-        { label:'Desayuno',   food:'Yogurt griego + avena',               cal:380, prot:25, carb:35, fat:10 },
-        { label:'Almuerzo',   food:'Pollo + ensalada + arroz',            cal:500, prot:35, carb:45, fat:12 },
-        { label:'Pre-entreno',food:'Yogurt light',                        cal:100, prot:6,  carb:15, fat:2  },
-        { label:'Cena',       food:'Pollo a la brasa + ensalada',         cal:500, prot:40, carb:15, fat:20 },
+        { label:'Desayuno',
+          food:'200g yogurt griego · 30g avena',
+          cal:380, prot:25, carb:35, fat:10 },
+        { label:'Almuerzo',
+          food:'120g pollo · ½ taza arroz · ensalada',
+          cal:500, prot:35, carb:45, fat:12 },
+        { label:'Pre-entreno',
+          food:'Yogurt light (125g)',
+          cal:100, prot:6, carb:15, fat:2 },
+        { label:'Cena',
+          food:'Pollo a la brasa 150g (sin piel) · ensalada',
+          cal:500, prot:40, carb:15, fat:20 },
       ]
     },
     {
-      day: 'Sábado', short: 'SÁB', tag: 'Descanso',
+      day: 'Sábado', short: 'SÁB', tag: 'Descanso 🛌',
       meals: [
-        { label:'Desayuno',   food:'Tostadas + huevo',                    cal:350, prot:25, carb:30, fat:12 },
-        { label:'Almuerzo',   food:'Libre controlado',                    cal:600, prot:25, carb:50, fat:25 },
-        { label:'Cena',       food:'Salida moderada',                     cal:600, prot:30, carb:40, fat:25 },
+        { label:'Desayuno',
+          food:'2 tostadas + 2 huevos',
+          cal:350, prot:25, carb:30, fat:12 },
+        { label:'Almuerzo',
+          food:'Libre controlado (~600 kcal)',
+          cal:600, prot:25, carb:50, fat:25 },
+        { label:'Cena',
+          food:'Salida moderada (~600 kcal)',
+          cal:600, prot:30, carb:40, fat:25 },
       ]
     },
     {
-      day: 'Domingo', short: 'DOM', tag: 'Fondo Running',
+      day: 'Domingo', short: 'DOM', tag: 'Fondo 🔥',
       meals: [
-        { label:'Pre-run',       food:'Yogurt + plátano',                 cal:180, prot:8,  carb:30, fat:2  },
-        { label:'Post-run desal',food:'Tostadas + huevos',                cal:400, prot:30, carb:30, fat:15 },
-        { label:'Almuerzo',      food:'Pollo + arroz + ensalada',         cal:550, prot:35, carb:50, fat:12 },
-        { label:'Cena',          food:'Huevos + ensalada',                cal:300, prot:28, carb:5,  fat:12 },
+        { label:'Pre-run',
+          food:'Yogurt light · 1 plátano',
+          cal:180, prot:8, carb:30, fat:2 },
+        { label:'Post-run',
+          food:'2 tostadas + 2 huevos + 2 claras',
+          cal:400, prot:30, carb:30, fat:15 },
+        { label:'Almuerzo',
+          food:'150g pollo · ¾ taza arroz · ensalada',
+          cal:550, prot:35, carb:50, fat:12 },
+        { label:'Cena',
+          food:'2 huevos + 3 claras · ensalada',
+          cal:300, prot:28, carb:5, fat:12 },
       ]
     },
   ];
@@ -1187,6 +1241,20 @@
     });
     mealContainer.appendChild(card);
   });
+
+  // Notas nutricionales
+  mealContainer.insertAdjacentHTML('beforeend', `
+    <div class="fit-notes-card" style="margin-top:4px">
+      <div class="fit-notes-title">📊 Notas nutricionales</div>
+      <div class="fit-notes-list">
+        <div class="fit-note-item">Objetivo: <strong>Recomposición corporal</strong></div>
+        <div class="fit-note-item">Proteína diaria: <strong>100–110 g</strong></div>
+        <div class="fit-note-item">Agua: <strong>2–2.5 L por día</strong></div>
+        <div class="fit-note-item">Sábado: <strong>día flexible controlado</strong> — disfrutá sin excesos</div>
+        <div class="fit-note-item">Domingo post-run: priorizá carbohidratos para recuperación</div>
+      </div>
+    </div>
+  `);
 </script>
 </body>
 </html>
