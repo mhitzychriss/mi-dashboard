@@ -637,6 +637,129 @@
 <!-- ─── MAIN ────────────────────────────────────────────── -->
 <main>
 
+  <!-- ORGANIZACIÓN SEMANAL -->
+  <section class="card" id="semanal">
+    <div class="card-title"><span class="icon">📅</span> Organización Semanal</div>
+    <div class="days-row" id="days-container"></div>
+  </section>
+
+  <!-- METAS (full width now) -->
+  <section class="card" id="metas">
+    <div class="card-title"><span class="icon">🎯</span> Metas</div>
+    <div class="goals-tabs">
+      <button class="goal-tab active" onclick="switchGoalTab(this,'personal')">Personales</button>
+      <button class="goal-tab" onclick="switchGoalTab(this,'profesional')">Profesionales</button>
+    </div>
+    <div class="goals-list" id="goals-personal"></div>
+    <div class="goals-list" id="goals-profesional" style="display:none"></div>
+    <button class="goal-add" onclick="addGoal()" style="margin-top:10px">+ Agregar meta</button>
+  </section>
+
+  <!-- GRILLA CONTENIDO — full width -->
+  <section class="card" id="contenido">
+    <div class="card-title"><span class="icon">📱</span> Grilla de Contenido Mensual</div>
+
+    <!-- Stats -->
+    <div class="cg-stats">
+      <div class="cg-stat"><div class="cg-stat-label">Piezas / mes</div><div class="cg-stat-val">28 <span>posts</span></div></div>
+      <div class="cg-stat"><div class="cg-stat-label">Reels / TikToks</div><div class="cg-stat-val">20 <span>videos</span></div></div>
+      <div class="cg-stat"><div class="cg-stat-label">Historias</div><div class="cg-stat-val">8 <span>días</span></div></div>
+      <div class="cg-stat"><div class="cg-stat-label">Frecuencia</div><div class="cg-stat-val">7 <span>días/sem</span></div></div>
+      <div class="cg-stat"><div class="cg-stat-label">Plataformas</div><div class="cg-stat-val">2 <span>redes</span></div></div>
+    </div>
+
+    <!-- Legend -->
+    <div class="cg-legend">
+      <div class="cg-leg"><div class="cg-legdot" style="background:#1a8a5c"></div>Inspiración</div>
+      <div class="cg-leg"><div class="cg-legdot" style="background:#a8720a"></div>Humor / Acting</div>
+      <div class="cg-leg"><div class="cg-legdot" style="background:#b84028"></div>Reinvención</div>
+      <div class="cg-leg"><div class="cg-legdot" style="background:#1e5ba8"></div>UGC / Lifestyle</div>
+      <div class="cg-leg"><div class="cg-legdot" style="background:#5a3db0"></div>Serie Playlist</div>
+      <div class="cg-leg"><div class="cg-legdot" style="background:#a82660"></div>Mujer activa</div>
+      <div class="cg-leg"><div class="cg-legdot" style="background:#888580"></div>Historias / Comunidad</div>
+    </div>
+
+    <!-- Week Tabs -->
+    <div class="cg-tabs">
+      <button class="cg-tab active" onclick="cgShow(0)">Semana 1</button>
+      <button class="cg-tab" onclick="cgShow(1)">Semana 2</button>
+      <button class="cg-tab" onclick="cgShow(2)">Semana 3</button>
+      <button class="cg-tab" onclick="cgShow(3)">Semana 4</button>
+    </div>
+
+    <!-- ── SEMANA 1 ── -->
+    <div class="cg-week active" id="cg-w0">
+      <div class="cg-week-label">Semana 1 — Valor y conexión desde el primer post</div>
+      <div class="cg-day-row"><div class="cg-day-label">Lun</div><div class="cg-cards"><div class="cg-card cg-teal"><div class="cg-card-title">Reel: "Nadie te dice esto sobre empezar de cero"</div><div class="cg-card-body">3 verdades sobre reiniciarse. Habla a cámara, tono íntimo. Tu historia aparece sola sin que la cuentes entera.</div><div class="cg-card-hook">"¿Sabes cuándo supe que estaba sanando? Cuando dejé de necesitar ruido para no pensar."</div><div class="cg-pills"><span class="cg-pill">Inspiración</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Talking head</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mar</div><div class="cg-cards"><div class="cg-card cg-amber"><div class="cg-card-title">TikTok: "Lo que me dije el día que decidí irme"</div><div class="cg-card-body">Audio trending de fondo + frases cortas en pantalla. Sin explicar el contexto — el texto hace el trabajo.</div><div class="cg-card-hook">"Ya no era yo. Y ese día decidí serlo."</div><div class="cg-pills"><span class="cg-pill">Humor + emoción</span><span class="cg-pill">Solo TikTok</span><span class="cg-pill">Texto + audio viral</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mié</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: encuesta + reacción al reel del lunes</div><div class="cg-card-body">¿Cuál verdad te llegó más? Sticker encuesta. Muestra resultados y reacciona al día siguiente.</div><div class="cg-pills"><span class="cg-pill">Engagement</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Jue</div><div class="cg-cards"><div class="cg-card cg-pink"><div class="cg-card-title">Reel: "Por qué me levanto a las 6am aunque no quiera"</div><div class="cg-card-body">Clips de tu rutina de mañana. Voz en off o texto: no es disciplina, es elegir quién quiero ser.</div><div class="cg-card-hook">"5am. No tengo ganas. Voy igual."</div><div class="cg-pills"><span class="cg-pill">Mujer activa</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Reel POV / vlog</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Vie</div><div class="cg-cards"><div class="cg-card cg-purple"><span class="cg-star">Pieza fuerte</span><div class="cg-card-title">Playlist: "Para salir de una relación tóxica" — Parte 1</div><div class="cg-card-body">Tu guión ya listo. Refuerza la transición visual entre canción 3 y 4. Publica TikTok de mañana, IG en la tarde.</div><div class="cg-card-hook">"Canciones que necesitas si saliste de una relación tóxica… y estás reconectando contigo."</div><div class="cg-pills"><span class="cg-pill">Serie Playlist</span><span class="cg-pill">TikTok primero · IG después</span><span class="cg-pill">Lista / acting</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Sáb</div><div class="cg-cards"><div class="cg-card cg-blue"><div class="cg-card-title">Reel UGC: Get ready with me para trabajar</div><div class="cg-card-body">Tu rutina de mañana arreglándote. Ropa, accesorios. Tono de amiga. Portafolio visual para marcas de moda.</div><div class="cg-card-hook">"Mi hija ya está lista y yo apenas empiezo."</div><div class="cg-pills"><span class="cg-pill">UGC / Moda</span><span class="cg-pill">IG Reel</span><span class="cg-pill">GRWM</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Dom</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: canción de la semana + cierre</div><div class="cg-card-body">Lo que estás escuchando hoy. Una frase que resume tu semana. Espontáneo, sin guión.</div><div class="cg-pills"><span class="cg-pill">Comunidad</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+    </div>
+
+    <!-- ── SEMANA 2 ── -->
+    <div class="cg-week" id="cg-w1">
+      <div class="cg-week-label">Semana 2 — Humor, maternidad y playlist parte 2</div>
+      <div class="cg-day-row"><div class="cg-day-label">Lun</div><div class="cg-cards"><div class="cg-card cg-teal"><div class="cg-card-title">Reel: "Una cosa que nadie te enseña sobre quererte"</div><div class="cg-card-body">El silencio como señal de sanación. Continuación de tu línea inspiracional sin repetir los videos anteriores.</div><div class="cg-card-hook">"Aprender a estar sola sin sentirte sola es el mayor flex."</div><div class="cg-pills"><span class="cg-pill">Inspiración</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Talking head</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mar</div><div class="cg-cards"><div class="cg-card cg-amber"><div class="cg-card-title">TikTok: Sketch "Mi yo del pasado vs. yo ahora"</div><div class="cg-card-body">Actúas dos versiones tuyas. Antes buscando validación, ahora sin necesitarla. Humor + verdad. Puedes hacerlo sola con corte o con Caro.</div><div class="cg-card-hook">"Yo antes: ¿Le gustaré? Yo ahora: ¿Hay café? Perfecto."</div><div class="cg-pills"><span class="cg-pill">Humor + Acting</span><span class="cg-pill">Solo TikTok</span><span class="cg-pill">Sketch / corte</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mié</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: reacción a comentarios de la playlist</div><div class="cg-card-body">Toma los mejores comentarios del viernes y reacciona. Alarga la vida del video sin grabar nada nuevo.</div><div class="cg-pills"><span class="cg-pill">Engagement</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Jue</div><div class="cg-cards"><div class="cg-card cg-coral"><div class="cg-card-title">Reel: "Lo que aprendí siendo mamá a los 18"</div><div class="cg-card-body">Primera vez que tocas maternidad — desde el aprendizaje, no el sacrificio. 3 cosas que esa experiencia temprana te dio.</div><div class="cg-card-hook">"Me quitó cosas. Pero también me dio una que pocas tienen: claridad."</div><div class="cg-pills"><span class="cg-pill">Reinvención</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Talking head</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Vie</div><div class="cg-cards"><div class="cg-card cg-blue"><div class="cg-card-title">Reel: Reseña lifestyle — cafetería o lugar nuevo en Lima</div><div class="cg-card-body">Llegada + ambiente + pedido + reacción genuina. Tono de amiga recomendando. Portafolio UGC para marcas de food.</div><div class="cg-card-hook">"Encontré un lugar en Lima del que nadie habla y ya es mi favorito."</div><div class="cg-pills"><span class="cg-pill">UGC Lifestyle</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Reseña / vlog corto</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Sáb</div><div class="cg-cards"><div class="cg-card cg-purple"><span class="cg-star">Pieza fuerte</span><div class="cg-card-title">Playlist: "Para salir de una relación tóxica" — Parte 2</div><div class="cg-card-body">Lanza mientras el algoritmo te empuja del viernes. Misma energía, canciones nuevas. Cierra prometiendo Parte 3.</div><div class="cg-card-hook">"Dijeron que querían más… acá está la Parte 2."</div><div class="cg-pills"><span class="cg-pill">Serie Playlist</span><span class="cg-pill">TikTok primero · IG después</span><span class="cg-pill">Lista / acting</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Dom</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: caja de preguntas libre</div><div class="cg-card-body">"Pregúntame lo que quieras." Responde 3–5 preguntas en mini videos de 15 seg. Material para contenidos futuros.</div><div class="cg-pills"><span class="cg-pill">Comunidad</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+    </div>
+
+    <!-- ── SEMANA 3 ── -->
+    <div class="cg-week" id="cg-w2">
+      <div class="cg-week-label">Semana 3 — Viralidad, humor y contenido relatable</div>
+      <div class="cg-day-row"><div class="cg-day-label">Lun</div><div class="cg-cards"><div class="cg-card cg-amber"><div class="cg-card-title">TikTok: Horóscopo vs. mi vida real</div><div class="cg-card-body">Tu signo + predicción típica + tu realidad de mamá soltera, marketer y creadora. Tom el gato puede aparecer.</div><div class="cg-card-hook">"Capricornio: semana de amor. Yo: tres reuniones y Tom me mordió."</div><div class="cg-pills"><span class="cg-pill">Humor + Horóscopo</span><span class="cg-pill">Solo TikTok</span><span class="cg-pill">Reaction / trend</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mar</div><div class="cg-cards"><div class="cg-card cg-teal"><div class="cg-card-title">Reel: "3 señales de que ya estás sanando"</div><div class="cg-card-body">Formato lista. Señales reales, no de manual de autoayuda. Las tuyas. Con humor intercalado en cada punto.</div><div class="cg-card-hook">"Número 1: ya no revisas su perfil. Mentira, sí revisas, pero solo una vez."</div><div class="cg-pills"><span class="cg-pill">Inspiración</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Lista / talking head</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mié</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: "¿En cuál de estas señales estás tú?"</div><div class="cg-card-body">Comparte las 3 señales del martes una por una con opción de votar. Genera conversación y datos de tu audiencia.</div><div class="cg-pills"><span class="cg-pill">Engagement</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Jue</div><div class="cg-cards"><div class="cg-card cg-blue"><div class="cg-card-title">Reel: "Una semana siendo mamá soltera en Lima"</div><div class="cg-card-body">Mini vlog de tu semana real. Sin glamour. El trabajo, el gym, tu hija, un café sola. Construye comunidad más que cualquier reflexión.</div><div class="cg-card-hook">"Nadie me preguntó si estaba lista. Y acá estoy."</div><div class="cg-pills"><span class="cg-pill">Lifestyle / UGC</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Vlog semana</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Vie</div><div class="cg-cards"><div class="cg-card cg-purple"><span class="cg-star">Pieza fuerte</span><div class="cg-card-title">Playlist: "Para mamás que trabajan solas"</div><div class="cg-card-body">4 canciones para los días que quieres renunciar a todo pero no puedes. Variante de tu serie que amplía audiencia.</div><div class="cg-card-hook">"Para cuando eres mamá, jefa de ti misma y ya no tienes más paciencia."</div><div class="cg-pills"><span class="cg-pill">Serie Playlist</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Lista / acting</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Sáb</div><div class="cg-cards"><div class="cg-card cg-amber"><div class="cg-card-title">TikTok: Parodia o sketch con Caro</div><div class="cg-card-body">Ella hace de "la que no entiende tu vida" y tú eres la mamá limeña explicándole todo. Potencial alto en ambas plataformas.</div><div class="cg-card-hook">"Caro: ¿pero por qué madrugás tanto? Yo: porque soy mamá, Caro."</div><div class="cg-pills"><span class="cg-pill">Humor + Actuación</span><span class="cg-pill">TikTok primero · IG después</span><span class="cg-pill">Sketch duo</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Dom</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: lo que aprendiste esta semana</div><div class="cg-card-body">Una historia rápida — un aprendizaje real, sin producción. Tu comunidad más cercana espera esto los domingos.</div><div class="cg-pills"><span class="cg-pill">Comunidad</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+    </div>
+
+    <!-- ── SEMANA 4 ── -->
+    <div class="cg-week" id="cg-w3">
+      <div class="cg-week-label">Semana 4 — Consolidar, inspirar y hablarle a marcas</div>
+      <div class="cg-day-row"><div class="cg-day-label">Lun</div><div class="cg-cards"><div class="cg-card cg-teal"><div class="cg-card-title">Reel: "Lo que cambió en mí este mes"</div><div class="cg-card-body">Cierre del mes con reflexión poderosa. No es resumen, es evolución. Qué pensabas hace 30 días vs. qué piensas hoy.</div><div class="cg-card-hook">"Hace un mes tenía miedo. Hoy también. Pero publico igual."</div><div class="cg-pills"><span class="cg-pill">Inspiración</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Talking head</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mar</div><div class="cg-cards"><div class="cg-card cg-amber"><div class="cg-card-title">TikTok: "Cosas que hago sola y ya no me parecen tristes"</div><div class="cg-card-body">Formato lista con humor. Ir al cine sola, comer sola, caminar sola. Altamente compartible por mujeres en proceso de independencia.</div><div class="cg-card-hook">"Ir sola al cine: de pena a plan favorito en 6 meses."</div><div class="cg-pills"><span class="cg-pill">Humor relatable</span><span class="cg-pill">Solo TikTok</span><span class="cg-pill">Lista / trend</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Mié</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: "¿Qué contenido quieren ver el próximo mes?"</div><div class="cg-card-body">Caja de preguntas + encuesta con 4 opciones. Tu audiencia construye contigo la grilla del mes siguiente.</div><div class="cg-pills"><span class="cg-pill">Comunidad</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Jue</div><div class="cg-cards"><div class="cg-card cg-blue"><div class="cg-card-title">Reel UGC: outfit del mes + productos favoritos</div><div class="cg-card-body">3 prendas o productos que usaste este mes. Tono natural. Este es tu portafolio más directo para marcas de moda y lifestyle.</div><div class="cg-card-hook">"Lo que usé todo el mes y por qué no lo suelto."</div><div class="cg-pills"><span class="cg-pill">UGC / Moda</span><span class="cg-pill">IG Reel</span><span class="cg-pill">Haul / reseña</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Vie</div><div class="cg-cards"><div class="cg-card cg-coral"><span class="cg-star">Pieza ancla del mes</span><div class="cg-card-title">Reel: "Por qué decidí perseguir mis sueños a los 29"</div><div class="cg-card-body">Tu manifiesto de marca. No es presentación — es declaración. Qué te detuvo, qué cambió, qué viene. Este reel vive en tu perfil para siempre.</div><div class="cg-card-hook">"A los 29, con una hija, trabajo y miedos, decidí que ya era suficiente esperar."</div><div class="cg-pills"><span class="cg-pill">Reinvención</span><span class="cg-pill">IG + TikTok</span><span class="cg-pill">Talking head</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Sáb</div><div class="cg-cards"><div class="cg-card cg-purple"><span class="cg-star">Pieza fuerte</span><div class="cg-card-title">Playlist: "Para cuando cumples años y te sientes rara"</div><div class="cg-card-body">Especial de cumpleaños. Canciones para los que cumplen años en modo reflexivo, no en modo fiesta. Muy compartible en tu rango de edad.</div><div class="cg-card-hook">"Para las que cumplieron años y en vez de celebrar, se pusieron a pensar."</div><div class="cg-pills"><span class="cg-pill">Serie Playlist</span><span class="cg-pill">TikTok primero · IG después</span><span class="cg-pill">Lista / acting</span></div></div></div></div>
+      <hr class="cg-divider">
+      <div class="cg-day-row"><div class="cg-day-label">Dom</div><div class="cg-cards"><div class="cg-card cg-gray"><div class="cg-card-title">Historias: cierre de mes + agradecimiento a comunidad</div><div class="cg-card-body">Sin producción. Tú, a cámara, diciéndole gracias a las que llegaron este mes. Humaniza tu marca más que cualquier reel producido.</div><div class="cg-pills"><span class="cg-pill">Comunidad</span><span class="cg-pill">Solo IG Stories</span></div></div></div></div>
+    </div>
+  </section>
+
   <!-- FITNESS + COMIDAS -->
   <div class="grid-2">
 
