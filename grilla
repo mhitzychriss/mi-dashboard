@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Contenido — Semana 1 · Mhitzy Chriss</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f7f5f1;
+  --bg2: #ffffff;
+  --bg3: #f0ede7;
+  --border: #e4e0d8;
+  --border2: #d0ccc2;
+  --text: #1a1816;
+  --text2: #6b6760;
+  --text3: #b0ada6;
+  --accent: #c9622f;
+  --accent2: #e8855a;
+
+  --ig: #c9622f;
+  --ig-bg: #fdf0ea;
+  --ig-border: #f0c9b3;
+
+  --tt: #2563a8;
+  --tt-bg: #edf3fc;
+  --tt-border: #bdd4f4;
+
+  --both: #5a6e2a;
+  --both-bg: #f0f4e8;
+  --both-border: #c8d99a;
+
+  --heavy: #7c3aed;
+  --heavy-bg: #f5f0ff;
+  --heavy-border: #d4bfff;
+
+  --light: #0891b2;
+  --light-bg: #ecfbff;
+  --light-border: #a5e3f0;
+
+  --carousel: #b45309;
+  --carousel-bg: #fffbeb;
+  --carousel-border: #fcd99a;
+
+  --story: #64748b;
+  --story-bg: #f8fafc;
+  --story-border: #cbd5e1;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  padding: 36px 28px 60px;
+  min-height: 100vh;
+}
+
+/* ── Header ── */
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 32px;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding-bottom: 24px;
+  border-bottom: 2px solid var(--text);
+}
+
+.header-left {}
+
+.eyebrow {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.title {
+  font-family: 'Fraunces', serif;
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1.05;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 12px;
+  color: var(--text2);
+  font-weight: 300;
+}
+
+.header-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.meta-pill {
+  font-size: 11px;
+  font-weight: 500;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--border2);
+  color: var(--text2);
+  background: var(--bg2);
+  white-space: nowrap;
+}
+
+/* ── Legend ── */
+.legend-wrap {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.legend-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.legend-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 3px;
+}
+
+.leg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--text2);
+}
+
+.legchip {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: .04em;
+}
+
+/* ── Day sections ── */
+.day-section {
+  margin-bottom: 32px;
+}
+
+.day-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.day-name {
+  font-family: 'Fraunces', serif;
+  font-size: 22px;
+  font-weight: 900;
+  color: var(--text);
+  min-width: 110px;
+}
+
+.day-count {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text3);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.day-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* ── Table ── */
+.content-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--bg2);
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  table-layout: fixed;
+}
+
+.content-table th {
+  background: var(--bg3);
+  padding: 9px 12px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text3);
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+.content-table th:last-child { border-right: none; }
+
+.content-table td {
+  padding: 10px 12px;
+  vertical-align: top;
+  border-bottom: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.content-table td:last-child { border-right: none; }
+.content-table tr:last-child td { border-bottom: none; }
+
+.content-table tr:hover td { background: #fdfcfa; }
+
+/* Col widths */
+.col-plat { width: 88px; }
+.col-tipo { width: 90px; }
+.col-idea { width: auto; }
+.col-caption { width: 130px; }
+.col-ref { width: 110px; }
+.col-guion { width: 90px; }
+.col-pieza { width: 80px; }
+
+/* ── Platform badges ── */
+.plat {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 5px;
+  letter-spacing: .04em;
+  margin-bottom: 3px;
+  white-space: nowrap;
+}
+
+.plat-ig { background: var(--ig-bg); color: var(--ig); border: 1px solid var(--ig-border); }
+.plat-tt { background: var(--tt-bg); color: var(--tt); border: 1px solid var(--tt-border); }
+.plat-both { background: var(--both-bg); color: var(--both); border: 1px solid var(--both-border); }
+
+/* ── Type badges ── */
+.tipo {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 4px;
+  letter-spacing: .04em;
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+
+.tipo-heavy { background: var(--heavy-bg); color: var(--heavy); border: 1px solid var(--heavy-border); }
+.tipo-light { background: var(--light-bg); color: var(--light); border: 1px solid var(--light-border); }
+.tipo-carousel { background: var(--carousel-bg); color: var(--carousel); border: 1px solid var(--carousel-border); }
+.tipo-story { background: var(--story-bg); color: var(--story); border: 1px solid var(--story-border); }
+
+/* ── Idea cell ── */
+.idea-title {
+  font-weight: 600;
+  font-size: 12.5px;
+  color: var(--text);
+  margin-bottom: 3px;
+  line-height: 1.3;
+}
+
+.idea-body {
+  font-size: 11px;
+  color: var(--text2);
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.idea-hook {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 11px;
+  color: var(--accent);
+  margin-top: 4px;
+  line-height: 1.35;
+}
+
+.star {
+  display: inline-block;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 3px;
+  background: var(--accent);
+  color: #fff;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+/* ── Editable cells ── */
+.editable {
+  width: 100%;
+  min-height: 54px;
+  border: 1px dashed var(--border2);
+  border-radius: 6px;
+  padding: 6px 8px;
+  font-size: 11px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  resize: vertical;
+  outline: none;
+  transition: border-color .15s, background .15s;
+  line-height: 1.4;
+}
+
+.editable:focus {
+  border-color: var(--accent2);
+  background: #fff;
+}
+
+.editable::placeholder {
+  color: var(--text3);
+  font-style: italic;
+}
+
+/* ── Buttons ── */
+.btn-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.btn {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border2);
+  background: var(--bg2);
+  color: var(--text2);
+  cursor: pointer;
+  text-align: center;
+  transition: all .15s;
+  white-space: nowrap;
+  font-family: 'DM Sans', sans-serif;
+  letter-spacing: .02em;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: var(--bg3);
+  border-color: var(--text3);
+  color: var(--text);
+}
+
+.btn-guion {
+  border-color: var(--heavy-border);
+  color: var(--heavy);
+  background: var(--heavy-bg);
+}
+.btn-guion:hover { background: #ede4ff; border-color: var(--heavy); }
+
+.btn-pieza {
+  border-color: var(--carousel-border);
+  color: var(--carousel);
+  background: var(--carousel-bg);
+}
+.btn-pieza:hover { background: #fef3d0; border-color: var(--carousel); }
+
+/* ── Footer ── */
+.footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footer-brand {
+  font-family: 'Fraunces', serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text3);
+}
+
+.footer-note {
+  font-size: 10px;
+  color: var(--text3);
+  letter-spacing: .04em;
+}
+
+@media (max-width: 800px) {
+  body { padding: 20px 12px 40px; }
+  .title { font-size: 28px; }
+  .content-table { font-size: 11px; display: block; overflow-x: auto; }
+  .col-caption, .col-ref { width: 100px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<div class="header">
+  <div class="header-left">
+    <div class="eyebrow">Sistema de Contenido · Mhitzy Chriss</div>
+    <h1 class="title">Semana 1</h1>
+    <p class="subtitle">Lunes a Viernes · Instagram & TikTok · 13 piezas</p>
+  </div>
+  <div class="header-meta">
+    <span class="meta-pill">3 videos grabados</span>
+    <span class="meta-pill">4 trends / light</span>
+    <span class="meta-pill">3 carruseles</span>
+    <span class="meta-pill">5 historias</span>
+  </div>
+</div>
+
+<!-- ── Legend ── -->
+<div class="legend-wrap">
+  <div class="legend-group">
+    <div class="legend-label">Plataforma</div>
+    <div class="leg"><span class="legchip plat-ig">IG</span> Instagram</div>
+    <div class="leg"><span class="legchip plat-tt">TT</span> TikTok</div>
+    <div class="leg"><span class="legchip plat-both">IG+TT</span> Ambas</div>
+  </div>
+  <div class="legend-group">
+    <div class="legend-label">Tipo de contenido</div>
+    <div class="leg"><span class="legchip tipo-heavy">Heavy</span> Video grabado y editado</div>
+    <div class="leg"><span class="legchip tipo-light">Light</span> Trend / audio viral / rápido</div>
+    <div class="leg"><span class="legchip tipo-carousel">Carrusel</span> Diseño estático en Canva</div>
+    <div class="leg"><span class="legchip tipo-story">Historia</span> Story / sin producción</div>
+  </div>
+</div>
+
+<!-- ══════════ LUNES ══════════ -->
+<div class="day-section">
+  <div class="day-header">
+    <div class="day-name">Lunes</div>
+    <div class="day-count">3 piezas</div>
+    <div class="day-line"></div>
+  </div>
+
+  <table class="content-table">
+    <thead>
+      <tr>
+        <th class="col-plat">Plataforma</th>
+        <th class="col-tipo">Tipo</th>
+        <th class="col-idea">Idea / Concepto</th>
+        <th class="col-caption">Caption</th>
+        <th class="col-ref">Referencias</th>
+        <th class="col-guion">Guión</th>
+        <th class="col-pieza">Pieza</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="plat plat-both">IG + TT</span></td>
+        <td><span class="tipo tipo-heavy">Heavy</span><br><span style="font-size:10px;color:var(--text3)">Video grabado</span></td>
+        <td>
+          <div class="star">Pieza fuerte · Video 1</div>
+          <div class="idea-title">"Nadie te dice esto sobre mudarte a una nueva ciudad"</div>
+          <div class="idea-body">Talking head a cámara, 30–45 seg. 3 verdades reales sobre empezar en una ciudad nueva. Tu historia aparece sola sin que la cuentes entera. Tono íntimo, como WhatsApp de voz a tu mejor amiga.</div>
+          <div class="idea-hook">"Nadie te dice que extrañarás lo que detestabas."</div>
+        </td>
+        <td><textarea class="editable" placeholder="Escribe tu caption aquí…"></textarea></td>
+        <td><textarea class="editable" placeholder="Frases, links, inspo…"></textarea></td>
+        <td><div class="btn-group"><a class="btn btn-guion" href="#">[Ver guión]</a></div></td>
+        <td><div class="btn-group"><a class="btn btn-pieza" href="#">[Ver pieza]</a></div></td>
+      </tr>
+      <tr>
+        <td><span class="plat plat-ig">IG</span></td>
+        <td><span class="tipo tipo-story">Historia</span></td>
+        <td>
+          <div class="idea-title">"Una nueva semana de oportunidades para hacerlo mejor que ayer"</div>
+          <div class="idea-body">Frase motivacional de arranque de semana. Slide de texto en Stories. Sin grabación, diseño simple en Canva. Sube el lunes por la mañana antes del reel.</div>
+        </td>
+        <td><textarea class="editable" placeholder="Texto de la historia…"></textarea></td>
+        <td><textarea class="editable" placeholder="Color, fuente, estilo…"></textarea></td>
+        <td><div class="btn-group"><a class="btn btn-guion" href="#">[Ver guión]</a></div></td>
+        <td><div class="btn-group"><a class="btn btn-pieza" href="#">[Ver pieza]</a></div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════ MARTES ══════════ -->
+<div class="day-section">
+  <div class="day-header">
+    <div class="day-name">Martes</div>
+    <div class="day-count">3 piezas</div>
+    <div class="day-line"></div>
+  </div>
+
+  <table class="content-table">
+    <thead>
+      <tr>
+        <th class="col-plat">Plataforma</th>
+        <th class="col-tipo">Tipo</th>
+        <th class="col-idea">Idea / Concepto</th>
+        <th class="col-caption">Caption</th>
+        <th class="col-ref">Referencias</th>
+        <th class="col-guion">Guión</th>
+        <th class="col-pieza">Pieza</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="plat plat-tt">TikTok</span></td>
+        <td><span class="tipo tipo-light">Light</span><br><span style="font-size:10px;color:var(--text3)">Trend · audio viral</span></td>
+        <td>
+          <div class="idea-title">"Lo que suena en mi cabeza desde que decidí irme de mi ciudad"</div>
+          <div class="idea-body">Audio trending de fondo + frases cortas en pantalla mientras miras a cámara. Sin guión elaborado. Grabación: 5–10 minutos máximo. Busca el audio que más esté sonando esa semana en TikTok.</div>
+          <div class="idea-hook">"Mi cabeza antes: ¿y si me equivoco? Mi cabeza ahora: igual voy."</div>
+        </td>
+        <td><textarea class="editable" placeholder="Escribe tu caption aquí…"></textarea></td>
+        <td><textarea class="editable" placeholder="Audio a usar, link de trend…"></textarea></td>
+        <td><div class="btn-group"><a class="btn btn-guion" href="#">[Ver guión]</a></div></td>
+        <td><div class="btn-group"><a class="btn btn-pieza" href="#">[Ver pieza]</a></div></td>
+      </tr>
+      <tr>
+        <td><span class="plat plat-ig">Instagram</span></td>
+        <td><span class="tipo tipo-carousel">Carrusel</span></td>
+        <td>
+          <div class="idea-title">"3 frases que me ayudaron cuando decidí cambiar de ciudad"</div>
+          <div class="idea-body">Diseño en Canva. 1 frase por slide (3 slides de contenido + 1 slide de cierre con tu firma). Slide final: "¿Cuál de estas necesitabas leer hoy? Guárdala." Alta tasa de saves.</div>
+        </td>
+        <td><textarea class="editable" placeholder="Escribe tu caption aquí…"></textarea></td>
+        <td><textarea class="editable" placeholder="Las 3 frases elegidas…"></textarea></td>
+        <td><div class="btn-group"><a class="btn btn-guion" href="#">[Ver guión]</a></div></td>
+        <td><div class="btn-group"><a class="btn btn-pieza" href="#">[Ver pieza]</a></div></td>
+      </tr>
+      <tr>
+        <td><span class="plat plat-ig">IG</span></td>
+        <td><span class="tipo tipo-story">Historia</span></td>
+        <td>
+          <div class="idea-title">"Hoy elige paz, incluso si todo afuera es ruido"</div>
+          <div class="idea-body">Frase de motivación diaria. Texto en Stories. Puedes agregar una foto tuya de fondo o un color sólido. 1 minuto de producción en Canva.</div>
+        </td>
+        <td><textarea class="editable" placeholder="Texto adicional si aplica…"></textarea></td>
+        <td><textarea class="editable" placeholder="Color, estilo visual…"></textarea></td>
+        <td><div class="btn-group"><a class="btn btn-guion" href="#">[Ver guión]</a></div></td>
+        <td><div class="btn-group"><a class="btn btn-pieza" href="#">[Ver pieza]</a></div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════ MIÉRCOLES ══════════ -->
+<div class="day-section">
+  <div class="day-header">
+    <div class="day-name">Miércoles</div>
+    <div class="day-count">3 piezas</div>
+    <div class="day-line"></div>
+  </div>
+
+  <table class="content-table">
+    <thead>
+      <tr>
+        <th class="col-plat">Plataforma</th>
+        <th class="col-tipo">Tipo</th>
+        <th class="col-idea">Idea / Concepto</th>
+        <th class="col-caption">Caption</th>
+        <th class="col-ref">Referencias</th>
+        <th class="col-guion">Guión</th>
+        <th class="col-pieza">Pieza</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="plat plat-tt">TikTok</span></td>
+        <td><span class="tipo tipo-heavy">Heavy</span><br><span style="font-size:10px;color:var(--text3)">Video grabado</span></td>
+        <td>
+          <div class="star">Video 2 de la semana</div>
+          <div class="idea-title">"GRWM para ir a la ofi" — versión hablada</div>
+          <div class="idea-body">Talking head mientras te arreglas. Cuentas algo gracioso o reflexivo de tu semana mientras muestras tu rutina de mañana. Energía casual y cercana. Ideal para TikTok por el formato conversacional.</div>
+          <div class="idea-hook">"El miércoles me lo tomo con calma… mentira, también tengo reuniones."</div>
+        </td>
+        <td><textarea class="editable" placeholder="Escribe tu caption aquí…"></textarea></td>
+        <td><textarea class="editable" placeholder="Outfit del día, productos usados…"></textarea></td>
+        <td><div class="btn-group"><a class="btn btn-guion" href="#">[Ver guión]</a></div></td>
+        <td><div class="btn-group"><a class="btn btn-pieza" href="#">[Ver pieza]</a></div></td>
+      </tr>
+      <tr>
+        <td><span class="plat plat-ig">Instagram</span></td>
+        <td><span class="tipo tipo-heavy">Heavy</span><br><span style="font-size:10px;color:var(--text3)">Video estético</span></td>
+        <td>
+          <div class="idea-title">"GRWM para ir a la ofi" — versión estética / solo tomas</div>
+          <div class="idea-body">Misma grabación del GRWM de TikTok pero editada con tomas más cuidadas, sin voz en off o con música de fondo. IG prefiere lo visual. Reutilizas el mismo material grabado, solo cambias el enfoque editorial.</div>
+        </td>
+        <td><textarea class="editable" placeholder="Escribe tu caption aquí…"></textarea></td>
+        <td><textarea class="editable" placeholder="Música, filtro, estética…"></textarea></td>
+        <td><div class="btn-group"><a class="btn btn-guion" href="#">[Ver guión]</a></div></td>
+        <td><div class="btn-group"><a class="btn btn-pieza" href="#">[Ver pieza]</a></div></td>
+      </tr>
+      <tr>
+        <td><span class="plat plat-ig">IG</span></td>
+        <td><span class="tipo tipo-story">Historia</span></td>
+        <td>
+          <div class="idea-title">"No necesitas tener todo claro hoy… solo confiar en el proceso"</div>
+          <div class="idea-body">Frase de midweek para tu audiencia. Texto en Stories. Puedes complementarla con una foto tuya o un clip corto del GRWM del día.</div>
+        </td>
+        <td><textarea class="editable" placeholder="Texto adicional…"></textarea></td>
+        <td><textarea class="editable" placeholder="Visual, color de fondo…"></textarea></td>
+        <td><div class="btn-group"><a class="btn btn-guion" href="#">[Ver guión]</a></div></td>
+        <td><div class="btn-group"><a class="btn btn-pieza" href="#">[Ver pieza]</a></div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════ JUEVES ══════════ -->
+<div class="day-section">
+  <div class="day-header">
+    <div class="day-name">Jueves</div>
+    <div class="day-count">2 piezas</div>
+    <div class="day-line"></div>
+  </div>
+
+  <table class="content-table">
+    <thead>
+      <tr>
+        <th class="col-plat">Plataforma</th>
+        <th class="col-tipo">Tipo</th>
+        <th class="col-idea">Idea / Concepto</th>
+        <th class="col-caption">Caption</th>
+        <th class="col-ref">Referencias</th>
+        <th class="col-guion">Guión</th>
+        <th class="col-pieza">Pieza</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="plat plat-tt">TikTok</span></td>
+        <td><span class="tipo tipo-light">Light</span><br><span style="font-size:10px;color:var(--text3)">Trend · texto</span></td>
+        <td>
+          <div class="idea-title">"En realidad nunca estuve lista, solo fui valiente"</div>
+          <div class="idea-body">Frase poderosa en pantalla con audio trending de fondo. Tú a cámara, mirada directa, sin hablar. Que la frase hable por ti. Grabación: 2 minutos. La frase es el contenido.</div>
+          <div class="idea-hook">"Nadie está lista. Pero las valientes van igual."</div>
+        </td>
+        <td><textarea class="editable" placeholder="Escribe tu caption aquí…"></textarea></td>
+        <td><textarea class="editable" placeholder="Audio trending a usar…"></textarea></td>
+        <td><div class="btn-group"><a class="btn btn-guion" href="#">[Ver guión]</a></div></td>
+        <td><div class="btn-group"><a class="btn btn-pieza" href="#">[Ver pieza]</a></div></td>
+      </tr>
+      <tr>
+        <td><span class="plat plat-ig">Instagram</span></td>
+        <td><span class="tipo tipo-story">Historia</span><br><span style="font-size:10px;color:var(--text3)">Reutilizado</span></td>
+        <td>
+          <div class="idea-title">Repost del video del lunes + encuesta de engagement</div>
+          <div class="idea-body">Comparte el reel del lunes en Stories. Agrega encuesta: "¿Cuál verdad te llegó más?" o "¿Ya hiciste algo diferente esta semana?" Cero producción extra — el video ya existe.</div>
+        </td>
+        <td><textarea class="editable" placeholder="Pregunta de la encuesta…"></textarea></td>
+        <td><textarea class="editable" placeholder="Opciones de encuesta…"></textarea></td>
+        <td><div class="btn-group"><a class="btn btn-guion" href="#">[Ver guión]</a></div></td>
+        <td><div class="btn-group"><a class="btn btn-pieza" href="#">[Ver pieza]</a></div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ══════════ VIERNES ══════════ -->
+<div class="day-section">
+  <div class="day-header">
+    <div class="day-name">Viernes</div>
+    <div class="day-count">3 piezas</div>
+    <div class="day-line"></div>
+  </div>
+
+  <table class="content-table">
+    <thead>
+      <tr>
+        <th class="col-plat">Plataforma</th>
+        <th class="col-tipo">Tipo</th>
+        <th class="col-idea">Idea / Concepto</th>
+        <th class="col-caption">Caption</th>
+        <th class="col-ref">Referencias</th>
+        <th class="col-guion">Guión</th>
+        <th class="col-pieza">Pieza</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="plat plat-tt">TikTok</span></td>
+        <td><span class="tipo tipo-heavy">Heavy</span><br><span style="font-size:10px;color:var(--text3)">Video grabado</span></td>
+        <td>
+          <div class="star">Pieza fuerte · Video 3</div>
+          <div class="idea-title">"Playlist si acabas de salir de una relación tóxica — Parte 1"</div>
+          <div class="idea-body">Tu guión ya está listo. 4 canciones con actuación y cambios de energía. Refuerza la transición visual entre canción 3 y 4. Publica en TikTok por la mañana y en IG por la tarde para maximizar alcance.</div>
+          <div class="idea-hook">"Canciones que necesitas si saliste de una relación tóxica… y estás reconectando contigo."</div>
+        </td>
+        <td><textarea class="editable" placeholder="Escribe tu caption aquí…"></textarea></td>
+        <td><textarea class="editable" placeholder="Las 4 canciones elegidas…"></textarea></td>
+        <td><div class="btn-group"><a class="btn btn-guion" href="#">[Ver guión]</a></div></td>
+        <td><div class="btn-group"><a class="btn btn-pieza" href="#">[Ver pieza]</a></div></td>
+      </tr>
+      <tr>
+        <td><span class="plat plat-ig">Instagram</span></td>
+        <td><span class="tipo tipo-carousel">Carrusel</span></td>
+        <td>
+          <div class="idea-title">"Playlist si acabas de salir de una relación tóxica — Parte 1"</div>
+          <div class="idea-body">Versión escrita de la playlist en carrusel. 1 canción por slide con tu comentario de por qué la elegiste. Slide final: "¿Cuál faltó? Cuéntame en los comentarios." Complementa el video — no lo duplica.</div>
+        </td>
+        <td><textarea class="editable" placeholder="Escribe tu caption aquí…"></textarea></td>
+        <td><textarea class="editable" placeholder="Canción + frase de cada una…"></textarea></td>
+        <td><div class="btn-group"><a class="btn btn-guion" href="#">[Ver guión]</a></div></td>
+        <td><div class="btn-group"><a class="btn btn-pieza" href="#">[Ver pieza]</a></div></td>
+      </tr>
+      <tr>
+        <td><span class="plat plat-ig">IG</span></td>
+        <td><span class="tipo tipo-story">Historia</span></td>
+        <td>
+          <div class="idea-title">"Llegaste hasta aquí… y eso también merece ser celebrado"</div>
+          <div class="idea-body">Cierre de semana en Stories. Frase de viernes que conecta con el fin de semana. Puedes complementar con una foto tuya o el carrusel de la playlist reposteado con un sticker de encuesta.</div>
+        </td>
+        <td><textarea class="editable" placeholder="Texto de cierre…"></textarea></td>
+        <td><textarea class="editable" placeholder="Visual, sticker, encuesta…"></textarea></td>
+        <td><div class="btn-group"><a class="btn btn-guion" href="#">[Ver guión]</a></div></td>
+        <td><div class="btn-group"><a class="btn btn-pieza" href="#">[Ver pieza]</a></div></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ── Footer ── -->
+<div class="footer">
+  <div class="footer-brand">Mhitzy Chriss · Sistema de Contenido</div>
+  <div class="footer-note">Los campos de caption y referencias son editables directamente en el navegador</div>
+</div>
+
+</body>
+</html>
